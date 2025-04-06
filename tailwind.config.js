@@ -15,6 +15,12 @@ export default {
           DEFAULT: '1200px',
         },
       },
+      fontFamily: {
+        rubik: ['Rubik', 'sans-serif'],
+      },
+      colors: {
+        accent: '#0088CC',
+      },
     },
   },
   plugins: [],
