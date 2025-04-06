@@ -1,13 +1,9 @@
 <template>
-  <div class="min-h-screen flex flex-col">
-    <header class="bg-gray-800 text-white p-4">
-      <h1 class="text-2xl">Telegram Channels</h1>
-    </header>
+  <div class="flex flex-col min-h-screen">
+    <Header />
     <main class="flex-grow p-4">
       <slot />
     </main>
-    <footer class="bg-gray-800 text-white p-4 text-center">
-      <p>&copy; 2025 Мой проект</p>
-    </footer>
+    <Footer />
   </div>
 </template>
