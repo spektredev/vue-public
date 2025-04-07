@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-accent text-white font-rubik">
+  <header class="bg-accent-200 text-white font-rubik">
     <div class="container py-5 flex justify-between items-center">
       <div class="logo flex justify-between gap-2">
         <Icon name="icon:logo" class="h-7 w-7 text-white" />

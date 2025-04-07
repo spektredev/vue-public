@@ -19,7 +19,10 @@ export default {
         rubik: ['Rubik', 'sans-serif'],
       },
       colors: {
-        accent: '#0088CC',
+        accent: {
+          200: '#0088CC',
+          600: '#222222',
+        },
       },
     },
   },
