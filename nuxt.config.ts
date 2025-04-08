@@ -2,9 +2,20 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   ssr: false,
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/eslint'],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
+  },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL,
+    },
   },
   icon: {
     clientBundle: {

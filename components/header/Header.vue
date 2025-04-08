@@ -6,10 +6,10 @@
         <h1 class="text-lg">TGrow</h1>
       </div>
       <nav class="flex gap-10">
-        <NuxtLink to="/categories" class="hover:underline">Категории</NuxtLink>
-        <NuxtLink to="#" class="hover:underline">Добавить</NuxtLink>
-        <NuxtLink to="/faq" class="hover:underline">FAQ</NuxtLink>
-        <NuxtLink to="/download" class="hover:underline">Скачать</NuxtLink>
+        <NuxtLink to="/categories">Категории</NuxtLink>
+        <NuxtLink to="#">Добавить</NuxtLink>
+        <NuxtLink to="/faq">FAQ</NuxtLink>
+        <NuxtLink to="/download">Скачать</NuxtLink>
       </nav>
       <div class="flex justify-between">
         <Icon name="icon:theme-light" class="h-7 w-7 text-white" />
