@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-accent-600 text-white p-4">
+  <footer class="bg-accent-600 text-white p-4 mt-8">
     <div class="container mx-auto py-5">
       <div class="flex gap-3 mb-6">
         <Icon name="icon:logo" class="h-7 w-7 text-white" />
