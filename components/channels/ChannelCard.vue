@@ -1,21 +1,19 @@
 <template>
   <div class="border border-solid border-gray-300 rounded-xl pl-4 pr-4 min-h-[125px] flex items-center">
     <div class="flex gap-4 items-center w-full">
-      <!-- Аватар -->
-      <NuxtLink :to="`/${channel.link}`">
-        <img :src="channel.img_link" alt="Channel image" class="w-[100px] h-[100px] rounded-full object-cover" >
+      <NuxtLink :to="`/channel/${channel.link}`">
+        <div class="w-[100px] h-[100px] rounded-full overflow-hidden">
+          <img :src="formattedImgLink" alt="Channel image" class="w-full h-full object-cover" >
+        </div>
       </NuxtLink>
 
-      <!-- Контент -->
       <div class="flex-1 flex flex-col gap-1">
-        <!-- Заголовок -->
-        <NuxtLink :to="`/${channel.link}`">
+        <NuxtLink :to="`/channel/${channel.link}`">
           <div class="text-xl line-clamp-1 min-h-[28px]">{{ channel.title }}</div>
         </NuxtLink>
 
-        <!-- Ссылка и подписчики -->
         <div class="flex items-center gap-3 min-h-[24px]">
-          <NuxtLink class="text-gray-400 text-base" :to="`/${channel.link}`">
+          <NuxtLink class="text-gray-400 text-base" :to="`/channel/${channel.link}`">
             {{ channel.link }}
           </NuxtLink>
           <div class="flex items-center gap-1 text-gray-500 text-sm">
@@ -24,7 +22,6 @@
           </div>
         </div>
 
-        <!-- Описание -->
         <div class="text-gray-700 text-sm/6 line-clamp-2 min-h-[40px]">
           {{ channel.description }}
         </div>
@@ -47,5 +44,12 @@ const formattedSubs = computed(() => {
     return `${(subs / 1_000).toFixed(1)}K`;
   }
   return subs.toLocaleString('en-US');
+});
+
+const formattedImgLink = computed(() => {
+  if (props.channel.img_link && props.channel.img_link.trim() !== '') {
+    return 'http://127.0.0.1:9000' + props.channel.img_link; // todo: убрать в env
+  }
+  return '/images/another.png';
 });
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-x-10 gap-y-4 mt-10 mb-28">
+  <div class="grid grid-cols-2 gap-x-10 gap-y-4">
     <ChannelCard v-for="channel in channels" :key="channel.id" :channel="channel" />
   </div>
 </template>

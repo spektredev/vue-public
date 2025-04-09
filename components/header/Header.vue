@@ -1,10 +1,10 @@
 <template>
   <header class="bg-accent-200 text-white font-rubik">
     <div class="container py-5 flex justify-between items-center">
-      <div class="logo flex justify-between gap-2">
+      <NuxtLink to="/" class="flex justify-between gap-2">
         <Icon name="icon:logo" class="h-7 w-7 text-white" />
-        <h1 class="text-lg">TGrow</h1>
-      </div>
+        <h1 class="text-lg font-semibold">TGrow</h1>
+      </NuxtLink>
       <nav class="flex gap-10">
         <NuxtLink to="/categories">Категории</NuxtLink>
         <NuxtLink to="#">Добавить</NuxtLink>

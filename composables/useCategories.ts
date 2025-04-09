@@ -1,4 +1,3 @@
-import { useFetch } from '#app';
 import type { ApiResponse } from '~/types/api';
 import type { Category } from '~/types/category';
 
