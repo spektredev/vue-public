@@ -1,24 +1,22 @@
-import type { ApiResponse } from '~/types/api';
 import type { Category } from '~/types/category';
 
 export const useCategories = () => {
   const config = useRuntimeConfig();
+  const baseURL = config.public.apiBaseUrl || 'http://localhost:3001';
 
-  const fetchCategories = async (): Promise<ApiResponse<Category[]>> => {
-    const { data, error } = await useFetch('/categories', {
-      baseURL: config.public.apiBaseUrl || 'http://localhost:3001',
-    });
+  const { data, error, pending } = useFetch<Category[]>('/categories', {
+    baseURL,
+    key: 'cat-list',
+  });
 
-    return error.value
-      ? {
-          status: 'error',
-          error: { description: error.value.message, code: 500 },
-        }
-      : {
-          status: 'success',
-          data: data.value as Category[],
-        };
-  };
+  const catData = computed(() => {
+    console.log('Fetched categories:', data.value);
+    return data.value || [];
+  });
+  const errData = computed(() => {
+    console.log('Error:', error.value);
+    return error.value;
+  });
 
-  return { fetchCategories };
+  return { catData, errData, pending };
 };

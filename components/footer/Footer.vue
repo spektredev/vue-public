@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-accent-600 text-white p-4 mt-8">
+  <footer class="bg-darken-800 text-white p-4 mt-8">
     <div class="container mx-auto py-5">
       <div class="flex gap-3 mb-6">
         <Icon name="icon:logo" class="h-7 w-7 text-white" />
@@ -8,11 +8,11 @@
       <div class="flex gap-20">
         <div class="flex flex-col gap-3 text-sm">
           <NuxtLink to="/categories" class="hover:underline">Категории</NuxtLink>
-          <NuxtLink to="/channels" class="hover:underline">Каналы</NuxtLink>
-          <NuxtLink to="/faq" class="hover:underline">FAQ</NuxtLink>
+          <NuxtLink to="/news" class="hover:underline">Новости</NuxtLink>
+          <NuxtLink to="/feedback" class="hover:underline">Обратная связь</NuxtLink>
         </div>
         <div class="flex flex-col gap-3 text-sm">
-          <NuxtLink to="#" class="hover:underline">Разместить рекламу</NuxtLink>
+          <NuxtLink to="/about" class="hover:underline">О сайте</NuxtLink>
           <NuxtLink to="/eula" class="hover:underline">Политика конфиденциальности</NuxtLink>
         </div>
       </div>
