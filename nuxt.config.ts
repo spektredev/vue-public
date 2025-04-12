@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   ssr: false,
   modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/eslint'],
   tailwindcss: {
@@ -15,12 +15,13 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.API_BASE_URL,
+      minioUrl: process.env.MINIO_URL,
     },
   },
   icon: {
     clientBundle: {
       includeCustomCollections: true,
-      scan: true,
+      scan: false,
     },
     provider: 'server',
     customCollections: [
@@ -36,5 +37,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: 'static',
+  },
+  experimental: {
+    purgeCachedData: true,
   },
 });

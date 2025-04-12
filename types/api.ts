@@ -1,3 +1,5 @@
+import type { Channel } from './channel';
+
 export enum ApiStatus {
   SUCCESS = 'success',
   ERROR = 'error',
@@ -12,4 +14,9 @@ export interface ApiResponse<T> {
 export interface ErrorResponse {
   description: string;
   code: number;
+}
+
+export interface PaginatedResponse {
+  data: Channel[];
+  total: number;
 }

@@ -7,6 +7,7 @@ export default {
     './app.vue',
     './plugins/**/*.{js,ts}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       container: {
@@ -19,9 +20,19 @@ export default {
         rubik: ['Rubik', 'sans-serif'],
       },
       colors: {
+        fc: {
+          300: '#f0f6fc',
+        },
         accent: {
           200: '#0088CC',
+        },
+        darken: {
+          100: '#5d5d5d',
+          200: '#2b2b2b',
+          500: '#515151',
           600: '#222222',
+          800: '#1a1a1a',
+          900: '#1f1f1f',
         },
       },
     },

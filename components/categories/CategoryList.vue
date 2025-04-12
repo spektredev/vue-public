@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import type { Category } from '~/types/category';
+import CategoryCard from './CategoryCard.vue';
 
 defineProps<{
   categories: Category[] | null;
