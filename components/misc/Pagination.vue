@@ -29,6 +29,7 @@ defineProps<{
   page: number;
   totalPages: number;
 }>();
+console.log('pagination init');
 
 const emit = defineEmits<{
   (e: 'update:page', value: number): void;

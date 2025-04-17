@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div v-if="channels?.length" class="grid grid-cols-2 gap-x-14 gap-y-5">
+    <div class="grid grid-cols-2 gap-x-14 gap-y-5">
       <ChannelCard v-for="channel in channels" :key="channel.id" :channel="channel" />
     </div>
-    <p v-else class="text-center text-gray-500">Каналы не найдены</p>
   </div>
 </template>
 
