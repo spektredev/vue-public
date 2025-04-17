@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
-  ssr: false,
+  ssr: true,
   modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/eslint'],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   icon: {
     clientBundle: {
       includeCustomCollections: true,
-      scan: false,
+      scan: true,
     },
     provider: 'server',
     customCollections: [
@@ -35,10 +35,7 @@ export default defineNuxtConfig({
     strict: true,
     shim: false,
   },
-  nitro: {
-    preset: 'static',
-  },
-  experimental: {
-    purgeCachedData: true,
-  },
+  // nitro: {
+  //   preset: '',
+  // },
 });
