@@ -7,7 +7,7 @@ export default {
     './app.vue',
     './plugins/**/*.{js,ts}',
   ],
-  darkMode: 'class',
+  darkMode: 'selector',
   theme: {
     extend: {
       container: {
