@@ -12,6 +12,20 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  app: {
+    head: {
+      script: [{ src: '/theme-init.js', body: false }],
+      link: [
+        {
+          rel: 'preload',
+          href: '/fonts/Rubik-VariableFont_wght.ttf',
+          as: 'font',
+          type: 'font/ttf',
+          crossorigin: 'anonymous',
+        },
+      ],
+    },
+  },
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.API_BASE_URL,

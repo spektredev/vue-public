@@ -1,13 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Rubik';
   src: url('/fonts/Rubik-VariableFont_wght.ttf');
   font-weight: 300 900;
   font-display: swap;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   html, body {
