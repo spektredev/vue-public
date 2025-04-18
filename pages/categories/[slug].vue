@@ -22,24 +22,18 @@ const { catData, errData, status } = useCategories();
 const route = useRoute();
 const slug = route.params.slug as string;
 
-console.log('catData:', catData.value);
-
 const category = computed(() => {
-  console.log('computed category');
   const found = catData.value?.find((c) => c.link === slug);
-  console.log('found: ', found);
   return found || { id: null, title: 'Неизвестная категория' };
 });
 
 const categoryName = computed(() => category.value.title);
 const categoryId = computed(() => category.value.id);
-console.log('categoryId', categoryId.value);
 
 const channelsData = categoryId.value ? useChannels(categoryId.value) : null;
 const channels = computed(() => channelsData?.channels.value ?? []);
 const totalPages = computed(() => channelsData?.totalPages.value ?? 0);
 const page = computed(() => channelsData?.page.value ?? 1);
-console.log('page', page.value);
 
 function updatePage(newPage: number) {
   if (channelsData) {

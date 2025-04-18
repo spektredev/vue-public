@@ -37,7 +37,6 @@ export function useSearch() {
         baseURL,
         key: `search${Math.random()}`,
       });
-      console.log('data: ', data);
 
       searchResults.value = data.value || [];
       if (searchResults.value.length > 0) {

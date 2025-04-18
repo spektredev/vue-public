@@ -1,17 +1,12 @@
-import { ref } from 'vue';
+import { useNuxtApp } from '#app';
 
 export function useTheme() {
-  const isDarkMode = ref(false);
+  const { $theme } = useNuxtApp();
+  const { isDarkMode, setTheme } = $theme;
 
   function toggleTheme() {
-    isDarkMode.value = !isDarkMode.value;
-    if (isDarkMode.value) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    const newTheme = isDarkMode.value ? 'light' : 'dark';
+    setTheme(newTheme);
   }
 
   return {

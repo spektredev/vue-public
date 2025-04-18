@@ -14,7 +14,6 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      script: [{ src: '/theme-init.js', body: false }],
       link: [
         {
           rel: 'preload',
@@ -49,7 +48,4 @@ export default defineNuxtConfig({
     strict: true,
     shim: false,
   },
-  // nitro: {
-  //   preset: '',
-  // },
 });

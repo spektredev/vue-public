@@ -1,13 +1,21 @@
+// composables/useRecChannels.ts
 import { mockChannels } from '~/mocks/rec_channels';
-// import type { Channel } from '~/types/channel';
+import type { Channel } from '~/types/channel';
 
-export const useRecChannels = () => {
-  // const fetchRecChannels = async (): Promise<Channel[]> => {
-  //   return mockChannels;
-  // };
+// Функция для перемешивания массива (Fisher-Yates Shuffle)
+function shuffleArray<T>(array: T[]): T[] {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+}
 
-  // const { data } = useAsyncData<Channel[]>('recChannels', () => fetchRecChannels());
-  // const recChannels = computed(() => data.value ?? []);
+export const useRecChannels = (count = 6) => {
+  const randList = useState<Channel[]>('recChannelsRandList', () => {
+    return shuffleArray(mockChannels).slice(0, Math.min(count, mockChannels.length));
+  });
 
-  return { mockChannels };
+  return { randList: randList.value };
 };

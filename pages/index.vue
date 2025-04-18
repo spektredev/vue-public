@@ -97,15 +97,7 @@
     <section class="recommended-channels py-12">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Рекомендуемые каналы</h2>
-        <RecChannelsList :channels="recChannels.mockChannels" />
-        <div class="text-center mt-8">
-          <!-- <NuxtLink
-            to="/recommended"
-            class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
-          >
-            Показать больше
-          </NuxtLink> -->
-        </div>
+        <RecChannelsList :channels="randList" />
       </div>
     </section>
 
@@ -134,17 +126,17 @@
         <h2 class="text-2xl font-semibold mb-6 text-center">Почему выбирают нас?</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div class="text-center">
-            <Icon name="icon:collection" class="w-12 h-12 mx-auto text-blue-500 mb-4" />
+            <Icon name="mdi:collection" class="w-12 h-12 mx-auto text-blue-500 mb-4" />
             <h3 class="text-lg font-semibold">Большой выбор</h3>
             <p class="text-gray-600 dark:text-gray-200">Тысячи каналов в одном месте.</p>
           </div>
           <div class="text-center">
-            <Icon name="icon:search" class="w-12 h-12 mx-auto text-blue-500 mb-4" />
+            <Icon name="mdi:search" class="w-12 h-12 mx-auto text-blue-500 mb-4" />
             <h3 class="text-lg font-semibold">Удобный поиск</h3>
             <p class="text-gray-600 dark:text-gray-200">Найди каналы по интересам за пару кликов.</p>
           </div>
           <div class="text-center">
-            <Icon name="icon:refresh" class="w-12 h-12 mx-auto text-blue-500 mb-4" />
+            <Icon name="mdi:refresh" class="w-12 h-12 mx-auto text-blue-500 mb-4" />
             <h3 class="text-lg font-semibold">Ежедневные обновления</h3>
             <p class="text-gray-600 dark:text-gray-200">Новые каналы каждый день.</p>
           </div>
@@ -157,12 +149,11 @@
 <script setup lang="ts">
 import RecChannelsList from '~/components/channels/RecChannelsList.vue';
 import SmallChannelCard from '~/components/channels/SmallChannelCard.vue';
-import { useRecChannels } from '~/composables/useRecChannels';
 import { usePopChannels } from '~/composables/usePopChannels';
 import { useNewChannels } from '~/composables/useNewChannels';
 import { useSearch } from '~/composables/useSearch';
 
-const recChannels = useRecChannels();
+const { randList } = useRecChannels(6);
 const popChannels = usePopChannels();
 const newChannels = useNewChannels();
 const { searchQuery, searchChannels, isLoading, error } = useSearch();

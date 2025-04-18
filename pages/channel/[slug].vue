@@ -63,7 +63,7 @@
       </div>
     </div> -->
     <h2 class="text-2xl font-semibold mb-6 mt-8 text-center">Рекомендуемые каналы</h2>
-    <RecChannelsList :channels="recChannels.mockChannels" />
+    <RecChannelsList :channels="recChannels.randList" />
   </div>
 </template>
 
