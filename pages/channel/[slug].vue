@@ -14,14 +14,7 @@
       <div class="flex flex-col md:flex-row gap-6">
         <div class="flex-shrink-0">
           <div class="w-32 h-32 rounded-full overflow-hidden relative">
-            <div v-if="!isLoaded" class="absolute inset-0 bg-gray-200 rounded-full animate-pulse" />
-            <img
-              :src="formattedImgLink"
-              alt="Channel image"
-              class="w-full h-full object-cover"
-              :class="{ 'opacity-0': !isLoaded }"
-              @load="isLoaded = true"
-            >
+            <img :src="formattedImgLink" alt="Channel image" class="w-full h-full object-cover" >
           </div>
         </div>
 
@@ -63,12 +56,12 @@
       </div>
     </div> -->
     <h2 class="text-2xl font-semibold mb-6 mt-8 text-center">Рекомендуемые каналы</h2>
-    <RecChannelsList :channels="recChannels.randList" />
+    <RecChannelsList v-if="randList" :channels="randList" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { useChannel } from '~/composables/useChannel';
 import { navigateTo } from '#app';
 
@@ -76,13 +69,11 @@ const route = useRoute();
 const slug = route.params.slug as string;
 
 const { channel, errorData } = useChannel(slug);
-const recChannels = useRecChannels();
+const { data: randList } = await useRecChannels(6);
 
 const {
   public: { minioUrl },
 } = useRuntimeConfig();
-
-const isLoaded = ref(false);
 
 function goBack() {
   window.history.back();
