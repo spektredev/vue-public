@@ -7,7 +7,6 @@ export function useChannels(categoryId?: number | null, initialPage = 1) {
   const config = useRuntimeConfig();
   const baseURL = config.public.apiBaseUrl || 'http://localhost:3001';
 
-  console.log('useChannels: initializing useFetch');
   const { data, refresh, execute } = useFetch<PaginatedResponse>('/channels/paginated', {
     baseURL,
     query: { page, limit, categoryId: categoryId ?? undefined },
@@ -17,7 +16,6 @@ export function useChannels(categoryId?: number | null, initialPage = 1) {
   });
 
   if (categoryId) {
-    console.log('useChannels: calling execute');
     execute();
   }
 
@@ -25,10 +23,8 @@ export function useChannels(categoryId?: number | null, initialPage = 1) {
   const total = computed(() => data.value?.total ?? 0);
   const totalPages = computed(() => Math.ceil(total.value / limit.value));
 
-  watch(page, (newPage) => {
-    console.log(`watch: page changed to ${newPage}`);
+  watch(page, () => {
     if (categoryId) {
-      console.log('watch: calling refresh');
       refresh();
     }
   });

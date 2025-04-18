@@ -5,14 +5,7 @@
     <div class="flex gap-4 items-center w-full">
       <NuxtLink :to="`/channel/${channel.link}`">
         <div class="w-[100px] h-[100px] rounded-full overflow-hidden relative">
-          <div v-if="!isLoaded" class="absolute inset-0 bg-gray-200 rounded-full animate-pulse" />
-          <img
-            :src="formattedImgLink"
-            alt="Channel image"
-            class="w-full h-full object-cover"
-            :class="{ 'opacity-0': !isLoaded }"
-            @load="isLoaded = true"
-          >
+          <img :src="formattedImgLink" :alt="channel.title" class="w-full h-full object-cover" >
         </div>
       </NuxtLink>
 
@@ -33,7 +26,7 @@
           </div>
         </div>
 
-        <div class="text-gray-700 dark:text-gray-300 text-sm/6 line-clamp-2 min-h-[40px]">
+        <div v-if="isMounted" class="text-gray-700 dark:text-gray-300 text-sm/6 line-clamp-2 min-h-[40px]">
           {{ shortDescription }}
         </div>
       </div>
@@ -42,43 +35,42 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref, onMounted } from 'vue';
 import type { Channel } from '~/types/channel';
-import { computed, ref } from 'vue';
+
+const isMounted = ref(false);
+onMounted(() => {
+  isMounted.value = true;
+});
 
 const props = defineProps<{ channel: Channel }>();
+
 const {
   public: { minioUrl },
 } = useRuntimeConfig();
 
-const isLoaded = ref(false);
+const formattedImgLink = computed(() => {
+  const link = props.channel.img_link?.trim() || '';
+  if (!link) return '/images/another.png';
+  const prefix = minioUrl.replace(/\/+$/, '');
+  const path = link.replace(/^\/+/, '');
+  return `${prefix}/${path}`;
+});
 
 const formattedSubs = computed(() => {
-  if (props.channel.subs) {
-    const subs = props.channel.subs;
-    if (subs >= 1_000_000) {
-      return `${(subs / 1_000_000).toFixed(1)}M`;
-    } else if (subs >= 1_000) {
-      return `${(subs / 1_000).toFixed(1)}K`;
-    }
-    return subs.toLocaleString('en-US');
-  } else {
-    return '';
-  }
+  const subs = props.channel.subs || 0;
+  if (subs >= 1_000_000) return `${(subs / 1_000_000).toFixed(1)}M`;
+  if (subs >= 1_000) return `${(subs / 1_000).toFixed(1)}K`;
+  return subs.toLocaleString('en-US');
 });
+
+const cleanText = (text: string) => text.replace(/\uFFFD/g, '');
 
 const shortDescription = computed(() => {
   if (props.channel.description) {
-    return props.channel.description.length > 100
-      ? props.channel.description.substring(0, 100) + '...'
-      : props.channel.description;
+    const clean = cleanText(props.channel.description);
+    return clean.length > 100 ? clean.substring(0, 100) + '...' : clean;
   }
   return '';
-});
-
-const formattedImgLink = computed(() => {
-  if (props.channel.img_link && props.channel.img_link.trim() !== '') {
-    return `${minioUrl}${props.channel.img_link}`;
-  }
-  return '/images/another.png';
 });
 </script>

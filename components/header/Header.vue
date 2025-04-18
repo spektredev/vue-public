@@ -12,13 +12,18 @@
         <NuxtLink to="/download">Скачать</NuxtLink>
       </nav>
       <div class="theme-switcher flex justify-between">
-        <button class="focus:outline-none" @click="toggleTheme">
+        <button
+          class="focus:outline-none"
+          :aria-label="isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'"
+          @click="toggleTheme"
+        >
           <Icon :name="isDarkMode ? 'icon:theme-dark' : 'icon:theme-light'" class="h-7 w-7 text-white" />
         </button>
       </div>
     </div>
   </header>
 </template>
+
 <script setup lang="ts">
 import { useTheme } from '~/composables/useTheme';
 

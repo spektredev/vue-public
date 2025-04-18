@@ -7,5 +7,5 @@
 <script setup lang="ts">
 import type { Channel } from '~/types/channel';
 
-defineProps<{ channels: Channel[] | null }>();
+defineProps<{ channels: Channel[] }>();
 </script>
