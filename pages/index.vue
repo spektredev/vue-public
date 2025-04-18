@@ -97,7 +97,7 @@
     <section class="recommended-channels py-12">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Рекомендуемые каналы</h2>
-        <RecChannelsList :channels="randList" />
+        <RecChannelsList v-if="randList" :channels="randList" />
       </div>
     </section>
 
@@ -153,7 +153,7 @@ import { usePopChannels } from '~/composables/usePopChannels';
 import { useNewChannels } from '~/composables/useNewChannels';
 import { useSearch } from '~/composables/useSearch';
 
-const { randList } = useRecChannels(6);
+const { data: randList } = await useRecChannels(6);
 const popChannels = usePopChannels();
 const newChannels = useNewChannels();
 const { searchQuery, searchChannels, isLoading, error } = useSearch();

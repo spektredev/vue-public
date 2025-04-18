@@ -26,7 +26,7 @@
           </div>
         </div>
 
-        <div v-if="isMounted" class="text-gray-700 dark:text-gray-300 text-sm/6 line-clamp-2 min-h-[40px]">
+        <div class="text-gray-700 dark:text-gray-300 text-sm/6 line-clamp-2 min-h-[40px]">
           {{ shortDescription }}
         </div>
       </div>
@@ -35,13 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue';
+import { computed } from 'vue';
 import type { Channel } from '~/types/channel';
-
-const isMounted = ref(false);
-onMounted(() => {
-  isMounted.value = true;
-});
 
 const props = defineProps<{ channel: Channel }>();
 
@@ -64,13 +59,15 @@ const formattedSubs = computed(() => {
   return subs.toLocaleString('en-US');
 });
 
-const cleanText = (text: string) => text.replace(/\uFFFD/g, '');
+const cleanText = (text: string) => text.replace(/\uFFFD/g, '').trim();
 
 const shortDescription = computed(() => {
-  if (props.channel.description) {
-    const clean = cleanText(props.channel.description);
-    return clean.length > 100 ? clean.substring(0, 100) + '...' : clean;
-  }
-  return '';
+  if (!props.channel.description) return '';
+
+  const clean = cleanText(props.channel.description);
+
+  const chars = Array.from(clean);
+
+  return chars.length > 100 ? chars.slice(0, 100).join('') + '…' : clean;
 });
 </script>
