@@ -1,13 +1,15 @@
 <template>
   <div class="container mx-auto py-7">
-    <div v-if="status === 'pending'">Загрузка...</div>
-    <div v-else-if="status === 'error'">{{ errData?.message || 'Ошибка загрузки данных' }}</div>
-    <div v-else-if="!categoryId">Категория не найдена</div>
-    <div v-else>
+    <!-- <div v-if="pending">Загрузка...</div>
+    <div v-else-if="errData?.message">{{ errData?.message || 'Ошибка загрузки данных' }}</div>
+    <div v-else-if="!categoryId">Категория не найдена</div> -->
+    <div>
       <h1 class="text-2xl font-semibold mb-5">{{ categoryName }}</h1>
       <ChannelList :channels="channels" />
+      <!-- <p v-else>Нет каналов в этой категории</p> -->
+
       <Pagination
-        v-if="categoryId"
+        v-if="totalPages > 1"
         :page="page"
         :total-pages="totalPages"
         class="Racing Sans Onemt-10"
@@ -18,31 +20,65 @@
 </template>
 
 <script setup lang="ts">
-const { catData, errData, status } = useCategories();
+import { ref, computed, watch } from 'vue';
+import { useCategories } from '~/composables/useCategories';
+import { useChannels } from '~/composables/useChannels';
+
 const route = useRoute();
-const slug = route.params.slug as string;
+const slug = computed(() => route.params.slug as string);
+
+const { catData } = useCategories();
+// const { catData, errData, pending } = useCategories();
 
 const category = computed(() => {
-  const found = catData.value?.find((c) => c.link === slug);
+  const found = catData.value?.find((c) => c.link === slug.value);
   return found || { id: null, title: 'Неизвестная категория' };
 });
 
 const categoryName = computed(() => category.value.title);
 const categoryId = computed(() => category.value.id);
 
-const channelsData = categoryId.value ? useChannels(categoryId.value) : null;
-const channels = computed(() => channelsData?.channels.value ?? []);
-const totalPages = computed(() => channelsData?.totalPages.value ?? 0);
-const page = computed(() => channelsData?.page.value ?? 1);
+const page = ref(1);
+const channelsData = ref<ReturnType<typeof useChannels> | null>(null);
 
-function updatePage(newPage: number) {
-  if (channelsData) {
-    channelsData.page.value = newPage;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+watch(
+  [categoryId, page],
+  ([newCatId, newPage]) => {
+    if (newCatId) {
+      channelsData.value = useChannels(newCatId, newPage);
+    } else {
+      channelsData.value = null;
+    }
+  },
+  { immediate: true }
+);
+
+watch(
+  slug,
+  () => {
+    page.value = 1;
+  },
+  { immediate: false }
+);
+
+const channels = computed(() => channelsData.value?.channels ?? []);
+const totalPages = computed(() => channelsData.value?.totalPages ?? 0);
+
+async function updatePage(newPage: number) {
+  const NProgress = (await import('nprogress')).default;
+  NProgress.start();
+
+  page.value = newPage;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  await nextTick();
+
+  setTimeout(() => {
+    NProgress.done();
+  }, 100);
 }
 
 definePageMeta({
-  layout: 'default',
+  layout: 'limited-height',
 });
 </script>

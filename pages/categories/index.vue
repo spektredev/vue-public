@@ -12,6 +12,6 @@ import { useCategories } from '~/composables/useCategories';
 const { catData } = useCategories();
 
 definePageMeta({
-  layout: 'default',
+  layout: 'main',
 });
 </script>
