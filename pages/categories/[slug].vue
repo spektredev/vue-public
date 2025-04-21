@@ -1,13 +1,8 @@
 <template>
   <div class="container mx-auto py-7">
-    <!-- <div v-if="pending">Загрузка...</div>
-    <div v-else-if="errData?.message">{{ errData?.message || 'Ошибка загрузки данных' }}</div>
-    <div v-else-if="!categoryId">Категория не найдена</div> -->
     <div>
       <h1 class="text-2xl font-semibold mb-5">{{ categoryName }}</h1>
       <ChannelList :channels="channels" />
-      <!-- <p v-else>Нет каналов в этой категории</p> -->
-
       <Pagination
         v-if="totalPages > 1"
         :page="page"
@@ -28,11 +23,17 @@ const route = useRoute();
 const slug = computed(() => route.params.slug as string);
 
 const { catData } = useCategories();
-// const { catData, errData, pending } = useCategories();
 
 const category = computed(() => {
   const found = catData.value?.find((c) => c.link === slug.value);
-  return found || { id: null, title: 'Неизвестная категория' };
+  if (found) {
+    return found;
+  } else {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Страница не найдена',
+    });
+  }
 });
 
 const categoryName = computed(() => category.value.title);
