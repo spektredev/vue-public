@@ -49,21 +49,14 @@
       </div>
     </div>
 
-    <!-- <div class="mt-8">
-      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Последние посты</h2>
-      <div class="bg-gray-100 rounded-xl p-6 text-center text-gray-500">
-        Здесь будут последние посты канала (скоро добавим)
-      </div>
-    </div> -->
     <h2 class="text-2xl font-semibold mb-6 mt-8 text-center">Рекомендуемые каналы</h2>
     <RecChannelsList v-if="randList" :channels="randList" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed } from 'vue';
 import { useChannel } from '~/composables/useChannel';
-import { navigateTo } from '#app';
 
 const route = useRoute();
 const slug = route.params.slug as string;
@@ -75,15 +68,16 @@ const {
   public: { minioUrl },
 } = useRuntimeConfig();
 
+if (errorData.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Страница не найдена',
+  });
+}
+
 function goBack() {
   window.history.back();
 }
-
-watch(errorData, (newError) => {
-  if (newError) {
-    navigateTo('/not-found');
-  }
-});
 
 const formattedSubs = computed(() => {
   if (channel.value?.subs) {
