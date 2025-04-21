@@ -44,7 +44,7 @@
         <h2 class="text-2xl font-semibold mb-6 text-center">Популярные категории</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <NuxtLink
-            to="/categories/news"
+            :to="`/categories/news`"
             class="border dark:bg-darken-200 dark:border-darken-200 border-gray-300 rounded-lg p-4 flex items-center gap-4"
           >
             <Icon name="mdi:newspaper" class="w-8 h-8 text-blue-500" />
@@ -54,7 +54,7 @@
             </div>
           </NuxtLink>
           <NuxtLink
-            to="/categories/music"
+            :to="`/categories/music`"
             class="border dark:bg-darken-200 dark:border-darken-200 border-gray-300 rounded-lg p-4 flex items-center gap-4"
           >
             <Icon name="mdi:music" class="w-8 h-8 text-blue-500" />
@@ -64,7 +64,7 @@
             </div>
           </NuxtLink>
           <NuxtLink
-            to="/categories/humor"
+            :to="`/categories/humor`"
             class="border dark:bg-darken-200 dark:border-darken-200 border-gray-300 rounded-lg p-4 flex items-center gap-4"
           >
             <Icon name="mdi:emoticon-happy-outline" class="w-8 h-8 text-blue-500" />
@@ -163,5 +163,9 @@ onMounted(() => {
   if (route.query.query) {
     searchQuery.value = String(route.query.query);
   }
+});
+
+definePageMeta({
+  layout: 'main',
 });
 </script>

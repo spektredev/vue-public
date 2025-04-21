@@ -23,3 +23,7 @@ html {
 .dark body {
   @apply bg-darken-600 text-white;
 }
+#nprogress .bar {
+  background: #ffffff !important;
+  height: 4px;
+}
