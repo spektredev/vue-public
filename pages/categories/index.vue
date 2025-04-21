@@ -9,7 +9,7 @@
 import CategoryList from '~/components/categories/CategoryList.vue';
 import { useCategories } from '~/composables/useCategories';
 
-const { catData } = useCategories();
+const { catData } = await useCategories();
 
 definePageMeta({
   layout: 'main',
