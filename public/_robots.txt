@@ -1,0 +1,9 @@
+# robots.txt for TGrow (tgrow.ru)
+User-agent: *
+Disallow: /admin/
+Disallow: /404
+Disallow: /search
+
+Allow: /
+
+Sitemap: https://tgrow.ru/sitemap.xml

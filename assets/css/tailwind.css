@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik-VariableFont_wght.ttf');
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@layer base {
+  html, body {
+    @apply font-rubik;
+  }
+}
+
+html {
+  overflow-y: scroll;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  @apply bg-darken-600 text-white;
+}
+#nprogress .bar {
+  background: #ffffff !important;
+  height: 4px;
+}
