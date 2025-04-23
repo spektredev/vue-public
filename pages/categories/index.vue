@@ -14,4 +14,7 @@ const { catData } = await useCategories();
 definePageMeta({
   layout: 'main',
 });
+useHead({
+  title: 'Категории',
+});
 </script>

@@ -52,4 +52,7 @@
 definePageMeta({
   layout: 'flexed',
 });
+useHead({
+  title: 'Обратная связь',
+});
 </script>

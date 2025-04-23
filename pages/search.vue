@@ -34,4 +34,7 @@ onMounted(() => {
     }
   }
 });
+useHead({
+  title: 'Поиск',
+});
 </script>
