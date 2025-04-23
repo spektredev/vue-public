@@ -5,8 +5,7 @@
 .nitro
 .cache
 dist
-.github
-
+actions-runner
 # Node dependencies
 node_modules
 
