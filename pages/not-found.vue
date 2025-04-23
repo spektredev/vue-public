@@ -30,6 +30,9 @@
 definePageMeta({
   layout: 'flexed',
 });
+useHead({
+  title: 'Не найдено',
+});
 </script>
 
 <style scoped>

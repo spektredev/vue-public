@@ -45,6 +45,8 @@ const category = computed(() => {
 
 const categoryId = computed(() => category.value.id);
 const categoryName = computed(() => category.value.title);
+const categoryDescription = computed(() => category.value.description);
+console.log(categoryDescription.value);
 
 const page = ref(1);
 const channelsData = ref<ReturnType<typeof useChannels> | null>(null);
@@ -82,4 +84,9 @@ definePageMeta({
 });
 
 onMounted(() => console.log('mounted'));
+
+useHead({
+  title: categoryName,
+  meta: [{ name: 'description', content: computed(() => category.value.description) || '' }],
+});
 </script>

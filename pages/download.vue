@@ -115,4 +115,7 @@
 definePageMeta({
   layout: 'flexed',
 });
+useHead({
+  title: 'Скачать Telegram официальный сайт',
+});
 </script>

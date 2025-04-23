@@ -47,4 +47,7 @@
 definePageMeta({
   layout: 'flexed',
 });
+useHead({
+  title: 'О сайте',
+});
 </script>

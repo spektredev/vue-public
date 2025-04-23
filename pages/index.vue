@@ -168,4 +168,10 @@ onMounted(() => {
 definePageMeta({
   layout: 'main',
 });
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `%siteName %separator ${titleChunk}` : '%siteName';
+  },
+  title: 'Каталог всех каналов Telegram',
+});
 </script>

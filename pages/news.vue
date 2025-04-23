@@ -34,4 +34,7 @@
 definePageMeta({
   layout: 'flexed',
 });
+useHead({
+  title: 'Новости',
+});
 </script>

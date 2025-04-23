@@ -61,7 +61,7 @@ import { useChannel } from '~/composables/useChannel';
 const route = useRoute();
 const slug = route.params.slug as string;
 
-const { channel, errorData } = useChannel(slug);
+const { channel, errorData } = await useChannel(slug);
 const { data: randList } = await useRecChannels(6);
 
 const {
@@ -109,6 +109,11 @@ const telegramLink = computed(() =>
 
 definePageMeta({
   layout: 'default',
+});
+
+useHead({
+  title: computed(() => channel.value?.title || 'Канал'),
+  meta: [{ name: 'description', content: computed(() => channel.value?.description) || '' }],
 });
 </script>
 

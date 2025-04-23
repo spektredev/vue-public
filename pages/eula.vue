@@ -88,4 +88,7 @@
 definePageMeta({
   layout: 'flexed',
 });
+useHead({
+  title: 'Пользовательское соглашение',
+});
 </script>
