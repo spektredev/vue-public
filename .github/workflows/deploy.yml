@@ -44,7 +44,6 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key $SSH_USER@$SSH_HOST powershell -Command "& {
-            \$env:DOCKER_HOST = 'npipe:////./pipe/dockerDesktopLinuxEngine';
             cd C:\\tgrow;
             docker login -u '$DOCKER_USERNAME' -p '$DOCKER_PASSWORD';
             docker-compose pull nuxt;
