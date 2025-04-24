@@ -38,10 +38,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: root
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key $SSH_USER@$SSH_HOST powershell -Command "cd C:\\tgrow; docker login -u \"$DOCKER_USERNAME\" -p \"$DOCKER_PASSWORD\"; docker-compose pull nuxt; docker-compose up -d nuxt; docker system prune -f"
+          ssh -o StrictHostKeyChecking=no -i private_key $SSH_USER@$SSH_HOST powershell -Command "cd C:\\tgrow; docker-compose pull nuxt; docker-compose up -d nuxt; docker system prune -f"
           rm private_key
