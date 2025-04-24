@@ -37,14 +37,18 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: tgrow
+          SSH_USER: root
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key $SSH_USER@$SSH_HOST << 'EOF'
-            cd /mnt/c/tgrow
-            docker-compose pull nuxt
-            docker-compose up -d nuxt
+          ssh -o StrictHostKeyChecking=no -i private_key $SSH_USER@$SSH_HOST powershell -Command "
+            \$env:DOCKER_HOST = 'npipe:////./pipe/dockerDesktopLinuxEngine';
+            cd C:\\tgrow;
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD;
+            docker-compose pull nuxt;
+            docker-compose up -d nuxt;
             docker system prune -f
-          EOF
+          "
           rm private_key
