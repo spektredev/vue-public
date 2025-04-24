@@ -37,7 +37,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: deployer
+          SSH_USER: tgrow
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
