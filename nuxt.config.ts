@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     },
   ],
   site: {
-    url: 'http://tgrow.ru',
+    url: process.env.BASE_URL || 'https://tgrow.ru',
     name: 'TGrow',
   },
   seo: {
@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     automaticDefaults: true,
   },
   sitemap: {
-    sources: ['/api/__sitemap__/urls'],
+    enabled: false,
   },
   app: {
     head: {
@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL,
+      apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:3001',
       minioUrl: process.env.MINIO_URL,
     },
   },

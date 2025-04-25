@@ -3,7 +3,7 @@ import { useFetch } from 'nuxt/app';
 
 export async function useChannel(link?: string) {
   const config = useRuntimeConfig();
-  const baseURL = config.public.apiBaseUrl || 'http://localhost:3001';
+  const baseURL = config.public.apiBaseUrl;
 
   const { data, error } = await useFetch<Channel>(`/channels/link/${link}`, {
     baseURL,

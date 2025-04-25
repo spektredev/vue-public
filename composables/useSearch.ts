@@ -4,7 +4,7 @@ import { useFetch } from 'nuxt/app';
 
 export function useSearch() {
   const config = useRuntimeConfig();
-  const baseURL = config.public.apiBaseUrl || 'http://localhost:3001';
+  const baseURL = config.public.apiBaseUrl;
   const router = useRouter();
 
   const searchQuery = ref<string>('');
