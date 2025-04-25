@@ -5,7 +5,7 @@ export function useChannels(categoryId: number, initialPage = 1) {
   const page = ref(initialPage);
   const limit = ref(14);
   const config = useRuntimeConfig();
-  const baseURL = config.public.apiBaseUrl || 'http://localhost:3001';
+  const baseURL = config.public.apiBaseUrl;
 
   const { data, refresh } = useFetch<PaginatedResponse>('/channels/paginated', {
     baseURL,

@@ -3,7 +3,7 @@ import type { Category } from '~/types/category';
 
 export const useCategories = async () => {
   const config = useRuntimeConfig();
-  const baseURL = config.public.apiBaseUrl || 'http://localhost:3001';
+  const baseURL = config.public.apiBaseUrl;
 
   const { data, error, refresh, status, pending } = await useFetch<Category[]>('/categories', {
     baseURL,
