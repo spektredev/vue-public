@@ -8,7 +8,7 @@
         </p>
         <NuxtLink
           to="/categories"
-          class="inline-block bg-blue-500 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
+          class="inline-block bg-accent-200 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
         >
           В категории
         </NuxtLink>
@@ -27,7 +27,7 @@
           >
           <button
             :disabled="isLoading"
-            class="bg-blue-500 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 disabled:bg-gray-400"
+            class="bg-accent-200 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 disabled:bg-gray-400"
             @click="searchChannels"
           >
             {{ isLoading ? 'Поиск...' : 'Найти' }}

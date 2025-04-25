@@ -17,11 +17,8 @@ import { ref, computed, watch, nextTick, onMounted } from 'vue';
 import { useCategories } from '~/composables/useCategories';
 import { useChannels } from '~/composables/useChannels';
 
-console.log('begin');
-
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
-console.log('slug:', slug.value);
 
 const { catData, errData } = await useCategories();
 
@@ -45,8 +42,6 @@ const category = computed(() => {
 
 const categoryId = computed(() => category.value.id);
 const categoryName = computed(() => category.value.title);
-const categoryDescription = computed(() => category.value.description);
-console.log(categoryDescription.value);
 
 const page = ref(1);
 const channelsData = ref<ReturnType<typeof useChannels> | null>(null);

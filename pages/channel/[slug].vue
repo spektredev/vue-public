@@ -40,7 +40,7 @@
           <a
             :href="telegramLink"
             target="_blank"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-darken-500 dark:hover:bg-darken-100 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-accent-200 dark:bg-darken-500 dark:hover:bg-darken-100 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Icon name="simple-icons:telegram" class="w-5 h-5" />
             <span>Открыть в Telegram</span>

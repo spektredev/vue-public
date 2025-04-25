@@ -12,7 +12,7 @@
     <div class="flex gap-4">
       <NuxtLink
         to="/"
-        class="px-6 py-3 bg-blue-600 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        class="px-6 py-3 bg-accent-200 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white rounded-lg hover:bg-blue-700 transition-colors"
       >
         На главную
       </NuxtLink>

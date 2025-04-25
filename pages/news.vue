@@ -20,7 +20,7 @@
         <div class="text-center">
           <NuxtLink
             to="/"
-            class="inline-block bg-blue-500 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
+            class="inline-block bg-accent-200 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
           >
             Вернуться на главную
           </NuxtLink>

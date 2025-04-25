@@ -1,4 +1,5 @@
 import { defineNuxtPlugin, useCookie, useHead, useState } from '#app';
+import { watch } from 'vue'; // Импортируем watch из vue
 
 export default defineNuxtPlugin((nuxtApp) => {
   const themeCookie = useCookie<'dark' | 'light'>('theme', {
@@ -10,13 +11,17 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   useHead({
     htmlAttrs: {
-      class: isDarkMode.value ? 'dark' : '',
+      class: () => (isDarkMode.value ? 'dark' : ''),
     },
   });
 
   if (import.meta.client) {
     nuxtApp.hook('app:mounted', () => {
       document.documentElement.classList.toggle('dark', isDarkMode.value);
+    });
+
+    watch(isDarkMode, (newValue: boolean) => {
+      document.documentElement.classList.toggle('dark', newValue);
     });
   }
 
@@ -27,9 +32,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         setTheme: (theme: 'dark' | 'light') => {
           themeCookie.value = theme;
           isDarkMode.value = theme === 'dark';
-          if (import.meta.client) {
-            document.documentElement.classList.toggle('dark', isDarkMode.value);
-          }
         },
       },
     },
