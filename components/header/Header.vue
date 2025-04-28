@@ -69,11 +69,16 @@
 </template>
 
 <script setup lang="ts">
-import { useTheme } from '~/composables/useTheme';
+import { computed, ref } from 'vue';
 
-const { isDarkMode, toggleTheme } = useTheme();
+const colorMode = useColorMode();
+const isDarkMode = computed(() => colorMode.value === 'dark');
+
+const toggleTheme = () => {
+  colorMode.preference = isDarkMode.value ? 'light' : 'dark';
+};
+
 const isMenuOpen = ref(false);
-
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };

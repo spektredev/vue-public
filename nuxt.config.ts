@@ -7,10 +7,11 @@ export default defineNuxtConfig({
     cssPath: '~/assets/css/tailwind.css',
   },
   colorMode: {
-    preference: 'system', // Автоматическое определение системной темы
-    fallback: 'light', // Резервная тема
-    storage: 'cookie', // Хранение в cookie
-    storageKey: 'themeNuxt', // Имя cookie, совпадающее с вашим
+    preference: 'system',
+    fallback: 'light',
+    storage: 'cookie',
+    storageKey: 'theme',
+    classSuffix: '',
   },
   components: [
     {

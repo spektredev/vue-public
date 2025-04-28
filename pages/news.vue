@@ -39,5 +39,5 @@ useHead({
 });
 const colorMode = useColorMode();
 
-console.log(colorMode.preference);
+console.log(colorMode.preference, colorMode.value);
 </script>
