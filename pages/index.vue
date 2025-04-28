@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero-section py-16 text-center bg-gray-50 dark:bg-darken-200">
+    <section class="hero-section py-16 text-center bg-gray-50 dark:bg-darken-200 px-4">
       <div class="container">
         <h1 class="text-4xl font-bold mb-4">Найди лучшие Telegram-каналы для себя! 🚀</h1>
         <p class="text-lg text-gray-600 mb-8 dark:text-white">
@@ -15,14 +15,14 @@
       </div>
     </section>
 
-    <section class="search-section py-8 px-4">
+    <section class="search-section pt-8 px-4">
       <div class="container">
         <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-4">
           <input
             v-model="searchQuery"
             type="text"
-            placeholder="Поиск каналов по названию или описанию..."
-            class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none dark:text-black focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-300"
+            placeholder="Что ищем?"
+            class="w-full flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none dark:text-black focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-300"
             @keyup.enter="searchChannels"
           >
           <button
@@ -39,7 +39,7 @@
       </div>
     </section>
 
-    <section class="categories-section py-12">
+    <section class="categories-section pt-16 px-4">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Популярные категории</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -77,51 +77,54 @@
       </div>
     </section>
 
-    <section class="trending-channels py-12 bg-gray-50 dark:bg-darken-600">
+    <section class="trending-channels pt-16 px-4 bg-gray-50 dark:bg-darken-600">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Популярные каналы <span class="ml-2">🔥</span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <SmallChannelCard v-for="channel in popChannels.mockChannels" :key="channel.id" :channel="channel" />
         </div>
-        <div class="text-center mt-8">
-          <!-- <NuxtLink
+        <!-- <div class="text-center mt-8">
+          <NuxtLink
             to="/trending"
             class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
           >
             Смотреть все
-          </NuxtLink> -->
-        </div>
+          </NuxtLink>
+        </div> -->
       </div>
     </section>
 
-    <section class="recommended-channels py-12">
+    <section class="recommended-channels pt-16 px-4">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Рекомендуемые каналы</h2>
-        <RecChannelsList v-if="randList" :channels="randList" />
+        <RecChannelsList />
       </div>
     </section>
 
-    <section class="new-channels py-12 bg-gray-50 dark:bg-darken-600">
+    <section class="new-channels pt-16 px-4 bg-gray-50 dark:bg-darken-600">
       <div class="container">
-        <div class="flex justify-center items-center mb-6 gap-3">
-          <h2 class="text-2xl font-semibold">Недавно добавленные каналы</h2>
-          <Icon name="mdi:new-box" class="w-8 h-8 text-blue-500" />
+        <div class="flex justify-center items-center mb-4 gap-2 md:mb-6 md:gap-3">
+          <h2 class="text-xl font-semibold md:text-2xl">
+            <span class="md:hidden">Новые каналы</span>
+            <span class="hidden md:inline">Недавно добавленные каналы</span>
+          </h2>
+          <Icon name="mdi:new-box" class="w-6 h-6 text-blue-500 md:w-8 md:h-8 hidden md:block" aria-hidden="true" />
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <SmallChannelCard v-for="channel in newChannels.mockChannels" :key="channel.id" :channel="channel" />
         </div>
-        <div class="text-center mt-8">
-          <!-- <NuxtLink
+        <!-- <div class="text-center mt-8">
+          <NuxtLink
         to="/new"
         class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
       >
         Смотреть все
-      </NuxtLink> -->
-        </div>
+      </NuxtLink>
+        </div> -->
       </div>
     </section>
 
-    <section class="benefits-section py-12 dark:bg-darken-600">
+    <section class="benefits-section py-16 px-4 dark:bg-darken-600">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Почему выбирают нас?</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -153,7 +156,6 @@ import { usePopChannels } from '~/composables/usePopChannels';
 import { useNewChannels } from '~/composables/useNewChannels';
 import { useSearch } from '~/composables/useSearch';
 
-const { data: randList } = await useRecChannels(6);
 const popChannels = usePopChannels();
 const newChannels = useNewChannels();
 const { searchQuery, searchChannels, isLoading, error } = useSearch();

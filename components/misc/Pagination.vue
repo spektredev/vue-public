@@ -9,7 +9,7 @@
       <span>Назад</span>
     </button>
 
-    <span class="px-4 py-2 text-gray-600 dark:text-neutral-100 font-medium">
+    <span class="px-4 py-2 text-gray-600 dark:text-neutral-100 font-medium hidden min-[475px]:block">
       Страница {{ page }} из {{ totalPages }}
     </span>
 

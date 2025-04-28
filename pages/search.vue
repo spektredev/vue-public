@@ -45,4 +45,7 @@ watch(
   },
   { immediate: true }
 );
+useHead({
+  title: 'Результаты поиска',
+});
 </script>
