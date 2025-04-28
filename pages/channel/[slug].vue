@@ -1,5 +1,5 @@
 <template>
-  <div v-if="channel" class="container mx-auto py-7 max-w-4xl">
+  <div v-if="channel" class="container mx-auto py-7 max-w-4xl px-4">
     <div class="mb-6">
       <button
         class="inline-flex items-center gap-2 text-gray-600 dark:text-white dark:hover:text-white hover:text-gray-800 focus:outline-none"
@@ -11,7 +11,7 @@
     </div>
 
     <div class="bg-white dark:bg-darken-200 border dark:border-none border-gray-200 rounded-xl p-6 shadow-sm">
-      <div class="flex flex-col md:flex-row gap-6">
+      <div class="flex flex-col gap-6">
         <div class="flex-shrink-0">
           <div class="w-32 h-32 rounded-full overflow-hidden relative">
             <img :src="formattedImgLink" alt="Channel image" class="w-full h-full object-cover" >

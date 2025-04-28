@@ -5,7 +5,7 @@ definePageMeta({ layout: false });
 
 <template>
   <FlexedLayout>
-    <div class="container h mx-auto py-10 flex flex-col items-center justify-center">
+    <div class="container h mx-auto py-10 px-4 text-center flex flex-col items-center justify-center">
       <h1 class="text-6xl font-bold text-gray-800 dark:text-white mb-4">404</h1>
       <p class="text-2xl text-gray-600 dark:text-neutral-200 mb-6">Ой! Кажется, мы потерялись...</p>
 

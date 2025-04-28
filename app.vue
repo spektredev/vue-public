@@ -1,8 +1,10 @@
 <template>
   <div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <ColorScheme>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </ColorScheme>
   </div>
 </template>
 <script setup>
