@@ -37,4 +37,7 @@ definePageMeta({
 useHead({
   title: 'Новости',
 });
+const colorMode = useColorMode();
+
+console.log(colorMode.preference);
 </script>

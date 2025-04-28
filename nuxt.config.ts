@@ -2,9 +2,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
   ssr: true,
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/eslint', '@nuxtjs/seo'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/eslint', '@nuxtjs/seo', '@nuxt/image', '@nuxtjs/color-mode'],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
+  },
+  colorMode: {
+    preference: 'system', // Автоматическое определение системной темы
+    fallback: 'light', // Резервная тема
+    storage: 'cookie', // Хранение в cookie
+    storageKey: 'themeNuxt', // Имя cookie, совпадающее с вашим
   },
   components: [
     {

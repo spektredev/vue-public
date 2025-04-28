@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useCookie, useHead, useState } from '#app';
-import { watch } from 'vue'; // Импортируем watch из vue
+import { watch } from 'vue';
 
 export default defineNuxtPlugin((nuxtApp) => {
   const themeCookie = useCookie<'dark' | 'light'>('theme', {

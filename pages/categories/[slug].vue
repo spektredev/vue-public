@@ -1,19 +1,13 @@
 <template>
-  <div class="container mx-auto py-7">
+  <div class="container mx-auto px-4 py-7">
     <h1 class="text-2xl font-semibold mb-5">{{ categoryName }}</h1>
     <ChannelList :channels="channels" />
-    <Pagination
-      v-if="totalPages > 1"
-      :page="page"
-      :total-pages="totalPages"
-      class="Racing Sans One mt-10"
-      @update:page="updatePage"
-    />
+    <Pagination v-if="totalPages > 1" :page="page" :total-pages="totalPages" class="mt-10" @update:page="updatePage" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, nextTick, onMounted } from 'vue';
+import { ref, computed, watch, nextTick } from 'vue';
 import { useCategories } from '~/composables/useCategories';
 import { useChannels } from '~/composables/useChannels';
 
@@ -78,7 +72,7 @@ definePageMeta({
   layout: 'limited-height',
 });
 
-onMounted(() => console.log('mounted'));
+// onMounted(() => console.log('mounted'));
 
 useHead({
   title: categoryName,
