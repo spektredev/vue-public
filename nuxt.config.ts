@@ -38,7 +38,6 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      titleTemplate: '%s | TGrow',
       link: [
         {
           rel: 'preload',
@@ -77,5 +76,8 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
     shim: false,
+  },
+  nitro: {
+    preset: 'node-server',
   },
 });

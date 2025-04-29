@@ -12,7 +12,8 @@
         </button>
 
         <NuxtLink to="/" class="flex items-center gap-2">
-          <Icon name="icon:logo" class="h-7 w-7 text-white" />
+          <Icon name="file-icons:telegram" class="h-7 w-7 text-white" />
+          <!-- <Icon name="icon:logo" class="h-7 w-7 text-white" /> -->
           <h1 class="text-lg font-semibold">TGrow</h1>
         </NuxtLink>
       </div>
@@ -23,16 +24,17 @@
         <NuxtLink to="/about" class="hover:underline">О сайте</NuxtLink>
         <NuxtLink to="/download" class="hover:underline">Скачать</NuxtLink>
       </nav>
-
-      <div class="theme-switcher flex items-center">
-        <button
-          class="focus:outline-none h-[28px]"
-          :aria-label="isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'"
-          @click="toggleTheme"
-        >
-          <Icon :name="isDarkMode ? 'icon:theme-dark' : 'icon:theme-light'" class="h-7 w-7 text-white" />
-        </button>
-      </div>
+      <ColorScheme>
+        <div class="theme-switcher flex items-center">
+          <button
+            class="focus:outline-none h-[28px]"
+            :aria-label="isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'"
+            @click="toggleTheme"
+          >
+            <Icon :name="isDarkMode ? 'icon:theme-dark' : 'icon:theme-light'" class="h-7 w-7 text-white" />
+          </button>
+        </div>
+      </ColorScheme>
     </div>
 
     <div
@@ -42,7 +44,7 @@
     >
       <div class="flex flex-col h-full">
         <div class="p-4 flex items-center gap-2">
-          <Icon name="icon:logo" class="h-7 w-7 text-white" />
+          <Icon name="file-icons:telegram" class="h-7 w-7 text-white" />
           <h1 class="text-lg font-semibold">TGrow</h1>
         </div>
         <nav class="flex flex-col gap-4 p-4 flex-grow">
@@ -51,16 +53,18 @@
           <NuxtLink to="/about" class="text-base hover:underline py-2" @click="toggleMenu"> О сайте </NuxtLink>
           <NuxtLink to="/download" class="text-base hover:underline py-2" @click="toggleMenu"> Скачать </NuxtLink>
         </nav>
-        <div class="p-4 border-t border-white/20">
-          <button
-            class="focus:outline-none flex items-center gap-2"
-            :aria-label="isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'"
-            @click="toggleTheme"
-          >
-            <Icon :name="isDarkMode ? 'icon:theme-dark' : 'icon:theme-light'" class="h-7 w-7 text-white" />
-            <span class="text-base">{{ isDarkMode ? 'Светлая тема' : 'Тёмная тема' }}</span>
-          </button>
-        </div>
+        <ColorScheme>
+          <div class="p-4 border-t border-white/20">
+            <button
+              class="focus:outline-none flex items-center gap-2"
+              :aria-label="isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'"
+              @click="toggleTheme"
+            >
+              <Icon :name="isDarkMode ? 'icon:theme-dark' : 'icon:theme-light'" class="h-7 w-7 text-white" />
+              <span class="text-base">{{ isDarkMode ? 'Тёмная тема' : 'Светлая тема' }}</span>
+            </button>
+          </div>
+        </ColorScheme>
       </div>
     </div>
 

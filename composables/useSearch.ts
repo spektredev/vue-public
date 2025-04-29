@@ -12,7 +12,6 @@ export function useSearch() {
   const isLoading = ref(false);
   const error = ref<string | null>(null);
 
-  // Функция для очистки ошибки через заданное время
   function clearErrorAfterDelay(delay: number = 2000) {
     if (error.value) {
       setTimeout(() => {
@@ -35,7 +34,7 @@ export function useSearch() {
     try {
       const { data } = await useFetch<Channel[]>(`/channels/search/${encodeURIComponent(searchQuery.value)}`, {
         baseURL,
-        key: `search-${searchQuery.value}`, // Уникальный ключ для кэширования
+        key: `search-${searchQuery.value}`,
       });
 
       searchResults.value = data.value || [];
@@ -43,7 +42,6 @@ export function useSearch() {
         error.value = 'Ничего не найдено';
         clearErrorAfterDelay();
       }
-      // Обновляем URL только если он отличается
       if (String(route.query.query) !== searchQuery.value) {
         await router.push(`/search?query=${encodeURIComponent(searchQuery.value)}`);
       }

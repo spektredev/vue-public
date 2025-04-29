@@ -1,5 +1,5 @@
 <template>
-  <div v-if="channel" class="container mx-auto py-7 max-w-4xl px-4">
+  <div v-if="channel" class="container mx-auto py-7 px-4">
     <div class="mb-6">
       <button
         class="inline-flex items-center gap-2 text-gray-600 dark:text-white dark:hover:text-white hover:text-gray-800 focus:outline-none"
@@ -11,7 +11,7 @@
     </div>
 
     <div class="bg-white dark:bg-darken-200 border dark:border-none border-gray-200 rounded-xl p-6 shadow-sm">
-      <div class="flex flex-col gap-6">
+      <div class="flex flex-col min-[625px]:flex-row gap-6">
         <div class="flex-shrink-0">
           <div class="w-32 h-32 rounded-full overflow-hidden relative">
             <img :src="formattedImgLink" alt="Channel image" class="w-full h-full object-cover" >
@@ -56,24 +56,43 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useChannel } from '~/composables/useChannel';
+// import { useChannel } from '~/composables/useChannel';
+import type { Channel } from '~/types/channel';
 
 const route = useRoute();
 const slug = route.params.slug as string;
 
-const { channel, errorData } = await useChannel(slug);
+// 1) Достаём данные на сервере
+const { data: channel, error } = await useAsyncData<Channel>(`channel-${slug}`, () =>
+  $fetch(`/channels/link/${slug}`, {
+    baseURL: useRuntimeConfig().public.apiBaseUrl,
+  })
+);
+if (import.meta.server) {
+  console.log('SSR: channel=', channel.value);
+}
+if (import.meta.client) {
+  console.log('CSR: channel=', channel.value);
+}
+
 const { data: randList } = await useRecChannels(6);
 
 const {
   public: { minioUrl },
 } = useRuntimeConfig();
 
-if (errorData.value) {
+if (error.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Страница не найдена',
   });
 }
+
+// 2) Устанавливаем мета только на сервере
+useServerSeoMeta({
+  title: `${channel.value!.title} — канал в Telegram`,
+  description: channel.value!.description || '',
+});
 
 function goBack() {
   window.history.back();
@@ -109,11 +128,6 @@ const telegramLink = computed(() =>
 
 definePageMeta({
   layout: 'default',
-});
-
-useHead({
-  title: computed(() => channel.value?.title || 'Канал'),
-  meta: [{ name: 'description', content: computed(() => channel.value?.description) || '' }],
 });
 </script>
 
