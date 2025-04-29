@@ -5,12 +5,18 @@
     <div class="flex gap-3 items-center w-full md:gap-4">
       <NuxtLink :to="`/channel/${channel.link}`" :aria-label="`View ${channel.title} channel`">
         <div class="w-[80px] h-[80px] rounded-full overflow-hidden relative md:w-[100px] md:h-[100px]">
+          <div
+            v-if="!isImageLoaded"
+            class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-full bg-gray-200 dark:bg-darken-700 absolute top-0 left-0"
+          />
           <NuxtImg
             :src="formattedImgLink"
             :alt="channel.title"
             format="webp"
             sizes="sm:80px md:100px"
             class="w-full h-full object-cover"
+            :class="{ 'opacity-0': !isImageLoaded }"
+            @load="isImageLoaded = true"
           />
         </div>
       </NuxtLink>
@@ -49,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import type { Channel } from '~/types/channel';
 
 const props = defineProps<{ channel: Channel }>();
@@ -57,6 +63,8 @@ const props = defineProps<{ channel: Channel }>();
 const {
   public: { minioUrl },
 } = useRuntimeConfig();
+
+const isImageLoaded = ref(false);
 
 const formattedImgLink = computed(() => {
   const link = props.channel.img_link?.trim() || '';
@@ -101,6 +109,6 @@ function truncateTextByWeight(text: string, maxWeight = 100) {
 
 const shortDescription = computed(() => {
   if (!props.channel.description) return '';
-  return truncateTextByWeight(props.channel.description, 130);
+  return truncateTextByWeight(props.channel.description, 110);
 });
 </script>

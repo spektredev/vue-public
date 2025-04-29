@@ -59,14 +59,25 @@ watch(slug, () => {
 const channels = computed(() => channelsData.value?.channels ?? []);
 const totalPages = computed(() => channelsData.value?.totalPages ?? 0);
 
+async function scrollToTop() {
+  await nextTick(); // Ждем завершения рендеринга
+  // Используем requestAnimationFrame для синхронизации с рендерингом браузера
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 async function updatePage(newPage: number) {
   const NProgress = (await import('nprogress')).default;
   NProgress.start();
   page.value = newPage;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  await nextTick();
-  setTimeout(() => NProgress.done(), 100);
+  await scrollToTop(); // Вызываем скролл после обновления страницы
+  NProgress.done();
 }
+// Выполняем скролл в верх при начальной загрузке или обновлении страницы
+onMounted(() => {
+  scrollToTop();
+});
 
 definePageMeta({
   layout: 'limited-height',
