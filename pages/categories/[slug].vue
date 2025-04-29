@@ -72,8 +72,6 @@ definePageMeta({
   layout: 'limited-height',
 });
 
-// onMounted(() => console.log('mounted'));
-
 useHead({
   title: categoryName,
   meta: [{ name: 'description', content: computed(() => category.value.description) || '' }],

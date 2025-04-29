@@ -1,7 +1,7 @@
 <template>
   <div class="container bg-white dark:bg-darken-600">
     <section class="download-section py-16 px-4">
-      <div class="container max-w-4xl mx-auto">
+      <div class="container mx-auto">
         <h1 class="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-white">Скачать Telegram</h1>
 
         <div class="bg-gray-50 dark:bg-darken-200 rounded-lg p-6 mb-8">
@@ -116,6 +116,6 @@ definePageMeta({
   layout: 'flexed',
 });
 useHead({
-  title: 'Скачать Telegram официальный сайт',
+  title: 'Скачать Telegram для Windows, Linux, iOS, Android',
 });
 </script>

@@ -83,14 +83,6 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <SmallChannelCard v-for="channel in popChannels.mockChannels" :key="channel.id" :channel="channel" />
         </div>
-        <!-- <div class="text-center mt-8">
-          <NuxtLink
-            to="/trending"
-            class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
-          >
-            Смотреть все
-          </NuxtLink>
-        </div> -->
       </div>
     </section>
 
@@ -113,14 +105,6 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <SmallChannelCard v-for="channel in newChannels.mockChannels" :key="channel.id" :channel="channel" />
         </div>
-        <!-- <div class="text-center mt-8">
-          <NuxtLink
-        to="/new"
-        class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600"
-      >
-        Смотреть все
-      </NuxtLink>
-        </div> -->
       </div>
     </section>
 
