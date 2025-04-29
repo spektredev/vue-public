@@ -1,9 +1,19 @@
 <template>
   <div class="container bg-white dark:bg-darken-600">
     <section class="news-section py-16 px-4">
-      <div class="container max-w-4xl mx-auto">
+      <div class="container mx-auto">
         <h1 class="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-white">Новости TGrow</h1>
-
+        <article class="bg-gray-50 dark:bg-darken-200 rounded-lg p-6 mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Если канал недоступен</h2>
+          <p class="text-gray-600 dark:text-gray-200 mb-4">
+            Просим обратить внимание, что проект TGrow всё ещё находится в стадии "бета" разработки. Некоторые каналы
+            могут быть недоступны, но мы стараемся максимально быстро обновлять наш каталог. Спасибо за поддержку!
+          </p>
+          <div class="flex items-center gap-2 text-gray-500 dark:text-gray-300 text-sm">
+            <Icon name="mdi:calendar" class="w-5 h-5 text-blue-500 dark:text-gray-300" />
+            <span>16 апреля 2025</span>
+          </div>
+        </article>
         <article class="bg-gray-50 dark:bg-darken-200 rounded-lg p-6 mb-8">
           <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Запуск сайта TGrow!</h2>
           <p class="text-gray-600 dark:text-gray-200 mb-4">

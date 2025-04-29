@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-// import type { Channel } from '~/types/channel';
 const { data: randList } = await useRecChannels(6);
 const isMobile = ref(false);
 const maxMobileChannels = 3;
@@ -21,5 +20,4 @@ if (import.meta.client) {
     isMobile.value = window.innerWidth < 768;
   });
 }
-// defineProps<{ channels: Channel[] }>();
 </script>

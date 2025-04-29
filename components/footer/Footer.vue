@@ -2,7 +2,7 @@
   <footer class="bg-darken-800 text-white p-4 mt-8">
     <div class="container mx-auto py-5">
       <div class="flex gap-3 mb-6">
-        <Icon name="icon:logo" class="h-7 w-7 text-white" />
+        <Icon name="file-icons:telegram" class="h-7 w-7 text-white" />
         <h1 class="text-lg font-semibold">TGrow - неофициальный сайт про Telegram на русском</h1>
       </div>
       <div class="flex gap-20">

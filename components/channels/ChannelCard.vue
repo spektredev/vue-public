@@ -9,7 +9,6 @@
             :src="formattedImgLink"
             :alt="channel.title"
             format="webp"
-            loading="lazy"
             sizes="sm:80px md:100px"
             class="w-full h-full object-cover"
           />
@@ -39,7 +38,9 @@
           </div>
         </div>
 
-        <div class="text-gray-700 dark:text-gray-300 text-xs/5 min-h-[30px] md:text-sm/6 md:min-h-[40px]">
+        <div
+          class="text-gray-700 dark:text-gray-300 text-xs/5 md:text-sm/6 min-h-[30px] md:min-h-[40px] line-clamp-2 break-words truncate overflow-ellipsis whitespace-normal overflow-hidden"
+        >
           {{ shortDescription }}
         </div>
       </div>
@@ -74,18 +75,13 @@ const formattedSubs = computed(() => {
 
 const cleanText = (text: string) => text.replace(/\uFFFD/g, '').trim();
 
-// Функция для оценки "веса" символа
 function getCharWeight(char: string) {
   const code = char.codePointAt(0);
-  // Эмодзи и сложные Unicode-символы (примерно)
   if ((code && code > 0xffff) || /\p{Emoji}/u.test(char)) return 2;
-  // Латинские буквы
   if (/[a-zA-Z]/.test(char)) return 1;
-  // Кириллица и другие
   return 1.5;
 }
 
-// Функция для обрезки текста по "весу"
 function truncateTextByWeight(text: string, maxWeight = 100) {
   if (!text) return '';
 
@@ -94,7 +90,6 @@ function truncateTextByWeight(text: string, maxWeight = 100) {
   let weight = 0;
   let i = 0;
 
-  // Считаем вес символов
   while (i < chars.length && weight < maxWeight) {
     weight += getCharWeight(chars[i]);
     i++;
@@ -104,7 +99,6 @@ function truncateTextByWeight(text: string, maxWeight = 100) {
   return chars.slice(0, i).join('') + '…';
 }
 
-// Ваша computed-функция
 const shortDescription = computed(() => {
   if (!props.channel.description) return '';
   return truncateTextByWeight(props.channel.description, 130);
