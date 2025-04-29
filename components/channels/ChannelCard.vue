@@ -45,7 +45,7 @@
         </div>
 
         <div
-          class="text-gray-700 dark:text-gray-300 text-xs/5 md:text-sm/6 min-h-[30px] md:min-h-[40px] line-clamp-2 break-words truncate overflow-ellipsis whitespace-normal overflow-hidden"
+          class="text-gray-700 dark:text-gray-300 text-xs/5 md:text-sm/6 whitespace-normal overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [overflow-wrap:anywhere] [-webkit-line-clamp:2]"
         >
           {{ shortDescription }}
         </div>

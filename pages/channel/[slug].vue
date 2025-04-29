@@ -32,7 +32,7 @@
 
           <div
             v-if="channel.description"
-            class="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-4 whitespace-pre-wrap"
+            class="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-4 whitespace-pre-wrap truncate"
           >
             {{ formattedDescription }}
           </div>
