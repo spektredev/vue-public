@@ -36,7 +36,6 @@
         </div>
       </ColorScheme>
     </div>
-
     <div
       v-show="isMenuOpen"
       class="fixed inset-y-0 left-0 w-64 bg-accent-200 dark:bg-darken-800 md:hidden transition-transform duration-300 ease-in-out z-50"

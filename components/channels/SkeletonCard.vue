@@ -2,9 +2,9 @@
   <div
     class="border dark:border-darken-200 dark:bg-darken-200 border-solid border-gray-300 rounded-xl pl-4 pr-4 min-h-[125px] flex items-center"
   >
-    <div class="flex gap-4 items-center w-full">
+    <div class="flex gap-4 items-center w-full h-[140px]">
       <!-- Placeholder for image -->
-      <div class="w-[100px] h-[100px] rounded-full bg-gray-200 dark:bg-darken-700 animate-pulse" />
+      <div class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-full bg-gray-200 dark:bg-darken-700" />
 
       <!-- Placeholder for content -->
       <div class="flex-1 flex flex-col gap-1">

@@ -56,24 +56,22 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-// import { useChannel } from '~/composables/useChannel';
 import type { Channel } from '~/types/channel';
 
 const route = useRoute();
 const slug = route.params.slug as string;
 
-// 1) Достаём данные на сервере
 const { data: channel, error } = await useAsyncData<Channel>(`channel-${slug}`, () =>
   $fetch(`/channels/link/${slug}`, {
     baseURL: useRuntimeConfig().public.apiBaseUrl,
   })
 );
-if (import.meta.server) {
-  console.log('SSR: channel=', channel.value);
-}
-if (import.meta.client) {
-  console.log('CSR: channel=', channel.value);
-}
+// if (import.meta.server) {
+//   console.log('SSR: channel=', channel.value)
+// }
+// if (import.meta.client) {
+//   console.log('CSR: channel=', channel.value)
+// }
 
 const { data: randList } = await useRecChannels(6);
 
@@ -88,7 +86,6 @@ if (error.value) {
   });
 }
 
-// 2) Устанавливаем мета только на сервере
 useServerSeoMeta({
   title: `${channel.value!.title} — канал в Telegram`,
   description: channel.value!.description || '',
