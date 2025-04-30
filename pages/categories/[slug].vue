@@ -60,8 +60,7 @@ const channels = computed(() => channelsData.value?.channels ?? []);
 const totalPages = computed(() => channelsData.value?.totalPages ?? 0);
 
 async function scrollToTop() {
-  await nextTick(); // Ждем завершения рендеринга
-  // Используем requestAnimationFrame для синхронизации с рендерингом браузера
+  await nextTick();
   requestAnimationFrame(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -71,10 +70,9 @@ async function updatePage(newPage: number) {
   const NProgress = (await import('nprogress')).default;
   NProgress.start();
   page.value = newPage;
-  await scrollToTop(); // Вызываем скролл после обновления страницы
+  await scrollToTop();
   NProgress.done();
 }
-// Выполняем скролл в верх при начальной загрузке или обновлении страницы
 onMounted(() => {
   scrollToTop();
 });
@@ -85,6 +83,6 @@ definePageMeta({
 
 useHead({
   title: categoryName,
-  meta: [{ name: 'description', content: computed(() => category.value.description) || '' }],
+  meta: [{ name: 'description', content: () => category.value.description || '' }],
 });
 </script>
