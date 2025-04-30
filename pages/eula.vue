@@ -65,9 +65,9 @@
           <p class="text-gray-600 dark:text-gray-200">
             По всем вопросам, связанным с использованием Сайта или настоящим Соглашением, вы можете обратиться к
             администрации по электронной почте:
-            <a href="mailto:support@tgrow.ru" class="text-blue-500 dark:text-blue-400 hover:underline"
-              >support@tgrow.ru</a
-            >.
+            <a :href="`mailto:${config.public.email}`" class="text-blue-500 dark:text-blue-400 hover:underline">
+              {{ config.public.email }}
+            </a>
           </p>
         </div>
 
@@ -85,6 +85,8 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig();
+
 definePageMeta({
   layout: 'flexed',
 });

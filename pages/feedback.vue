@@ -11,8 +11,8 @@
             просим сообщить нам об этом для принятия соответствующих мер. Для связи с администрацией TGrow, пожалуйста,
             пишите на электронную почту:
           </p>
-          <a href="mailto:support@tgrow.ru" class="text-blue-500 dark:text-blue-400 hover:underline font-semibold">
-            support@tgrow.ru
+          <a :href="`mailto:${config.public.email}`" class="text-blue-500 dark:text-blue-400 hover:underline">
+            {{ config.public.email }}
           </a>
         </div>
         <div class="bg-gray-50 dark:bg-darken-200 rounded-lg shadow-md p-6 mb-8">
@@ -44,6 +44,8 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig();
+
 definePageMeta({
   layout: 'flexed',
 });
