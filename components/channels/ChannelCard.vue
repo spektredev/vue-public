@@ -30,7 +30,7 @@
           </div>
         </NuxtLink>
 
-        <div class="flex flex-col gap-1 min-h-[20px] lg:flex-row lg:flex lg:items-center lg:gap-3 lg:min-h-[24px]">
+        <div class="flex flex-col lg:flex-row lg:flex lg:items-center gap-1 lg:gap-3 min-h-[20px] lg:min-h-[24px]">
           <NuxtLink
             :to="`/channel/${channel.link}`"
             class="text-gray-400 text-sm lg:text-base"

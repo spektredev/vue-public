@@ -23,12 +23,12 @@
             type="text"
             placeholder="Что ищем?"
             class="w-full flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none dark:text-black focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-300"
-            @keyup.enter="searchChannels"
+            @keyup.enter="handleSearch"
           >
           <button
             :disabled="isLoading"
             class="bg-accent-200 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 disabled:bg-gray-400"
-            @click="searchChannels"
+            @click="handleSearch"
           >
             {{ isLoading ? 'Поиск...' : 'Найти' }}
           </button>
@@ -142,14 +142,23 @@ import { useSearch } from '~/composables/useSearch';
 
 const popChannels = usePopChannels();
 const newChannels = useNewChannels();
-const { searchQuery, searchChannels, isLoading, error } = useSearch();
+
+const router = useRouter();
+const route = useRoute();
+const { searchQuery, isLoading, error, validateQuery } = useSearch();
 
 onMounted(() => {
-  const route = useRoute();
   if (route.query.query) {
     searchQuery.value = String(route.query.query);
   }
 });
+
+// Обработчик нажатия кнопки поиска
+async function handleSearch() {
+  if (validateQuery()) {
+    await router.push(`/search?query=${encodeURIComponent(searchQuery.value)}`);
+  }
+}
 
 definePageMeta({
   layout: 'main',
