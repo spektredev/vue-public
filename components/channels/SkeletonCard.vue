@@ -21,7 +21,7 @@
         </div>
 
         <!-- Placeholder for description -->
-        <div class="h-[40px] bg-gray-200 dark:bg-darken-700 animate-pulse w-full" />
+        <div class="h-[40px] lg:h-[48px] bg-gray-200 dark:bg-darken-700 animate-pulse w-full" />
       </div>
     </div>
   </div>
