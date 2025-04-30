@@ -5,7 +5,7 @@
       <li v-for="category in categories" :key="category.id">
         <NuxtLink
           :to="`/categories/${category.link}`"
-          class="block text-base text-gray-800 dark:text-gray-200 py-2 px-2 underline"
+          class="block text-base text-gray-800 dark:text-gray-200 py-2 px-2 underline underline-offset-4"
           :aria-label="`View ${category.title} category`"
         >
           {{ category.title }}
