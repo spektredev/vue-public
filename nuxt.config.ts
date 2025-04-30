@@ -58,6 +58,7 @@ export default defineNuxtConfig({
     public: {
       apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:3001',
       minioUrl: process.env.MINIO_URL,
+      email: process.env.EMAIL || 'tgrowadmin@protonmail.com',
     },
   },
   icon: {
