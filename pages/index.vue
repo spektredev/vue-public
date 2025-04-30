@@ -168,5 +168,6 @@ useHead({
     return titleChunk ? `%siteName %separator ${titleChunk}` : '%siteName';
   },
   title: 'Каталог всех каналов Telegram',
+  meta: [{ name: 'yandex-verification', content: '6a00a2728526814e' }],
 });
 </script>
