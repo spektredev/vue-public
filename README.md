@@ -118,7 +118,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ---
 
-## Roadmap 🛤️
+## Roadmap
 
 - Realtime data updates.
 - Move admin panel from localhost to main site.
