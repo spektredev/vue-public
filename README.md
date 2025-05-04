@@ -133,7 +133,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 For questions or feedback, reach out to our team:
 
 - **Email**: tgrowadmin@protonmail.com
-- **GitHub Issues**: [Create an issue](https://github.com/your-org/telegram-channels-catalog/issues)
+- **GitHub Issues**: [Create an issue](https://github.com/spektredev/vue-public/issues)
 
 Author: Eugene B.
 
