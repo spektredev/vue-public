@@ -125,6 +125,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - Support for multiple languages (i18n).
 - Ability to add your own channel.
 - Discuss section.
+- Stickers catalog
+- Discord channels catalog (!)
 
 ---
 
