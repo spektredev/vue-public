@@ -6,5 +6,5 @@ COPY . .
 RUN npm run build
 EXPOSE 3005
 ENV NUXT_HOST=192.168.0.22
-ENV NUXT_PORT=3005
+ENV PORT=3005
 CMD ["npm", "run", "start"]
