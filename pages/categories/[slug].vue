@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4 py-7">
     <h1 class="text-2xl font-semibold mb-5">{{ categoryName }}</h1>
     <ChannelList :channels="channels" />
-    <Pagination v-if="totalPages > 1" :page="page" :total-pages="totalPages" class="mt-10" @update:page="updatePage" />
+    <Pagination :page="page" :total-pages="totalPages" :loading="loading" class="mt-10" @update:page="updatePage" />
   </div>
 </template>
 
@@ -38,13 +38,19 @@ const categoryId = computed(() => category.value.id);
 const categoryName = computed(() => category.value.title);
 
 const page = ref(1);
+
 const channelsData = ref<ReturnType<typeof useChannels> | null>(null);
+const channels = computed(() => channelsData.value?.channels ?? []);
+const totalPages = computed(() => {
+  return channelsData.value?.totalPages as number;
+});
+const loading = computed(() => channelsData.value?.status || 'idle');
 
 watch(
   [categoryId, page],
   ([newCatId, newPage]) => {
     if (newCatId) {
-      channelsData.value = useChannels(newCatId, newPage);
+      channelsData.value = useChannels(newCatId, newPage, totalPages.value);
     } else {
       channelsData.value = null;
     }
@@ -55,9 +61,6 @@ watch(
 watch(slug, () => {
   page.value = 1;
 });
-
-const channels = computed(() => channelsData.value?.channels ?? []);
-const totalPages = computed(() => channelsData.value?.totalPages ?? 0);
 
 async function scrollToTop() {
   await nextTick();
