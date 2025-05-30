@@ -3,7 +3,7 @@ import type { PaginatedResponse } from '~/types/api';
 
 export function useChannels(categoryId: number, initialPage = 1) {
   const page = ref(initialPage);
-  const limit = ref(14);
+  const limit = ref(12);
   const config = useRuntimeConfig();
   const baseURL = config.public.apiBaseUrl;
 

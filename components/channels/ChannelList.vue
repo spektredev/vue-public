@@ -1,11 +1,11 @@
-<!-- eslint-disable vue/attributes-order -->
-<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
-  <div>
-    <div class="grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2 lg:gap-x-14 lg:gap-y-5">
+  <div class="grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2 lg:gap-x-14 lg:gap-y-5">
+    <template v-if="channels && channels.length > 0">
       <ChannelCard v-for="channel in channels" :key="channel.id" :channel="channel" />
-      <SkeletonCard v-if="!channels || channels.length === 0" v-for="n in 14" :key="`skeleton-${n}`" />
-    </div>
+    </template>
+    <template v-else>
+      <SkeletonCard v-for="n in 12" :key="`skeleton-${n}`" />
+    </template>
   </div>
 </template>
 

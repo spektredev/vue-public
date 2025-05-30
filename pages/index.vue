@@ -77,7 +77,7 @@
       </div>
     </section>
 
-    <section class="trending-channels pt-16 px-4 bg-gray-50 dark:bg-darken-600">
+    <section class="trending-channels mt-16 py-8 lg:py-16 px-4 bg-gray-50 dark:bg-darken-600">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Популярные каналы <span class="ml-2">🔥</span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -93,7 +93,7 @@
       </div>
     </section>
 
-    <section class="new-channels pt-16 px-4 bg-gray-50 dark:bg-darken-600">
+    <section class="new-channels mt-16 py-8 lg:py-16 px-4 bg-gray-50 dark:bg-darken-600">
       <div class="container">
         <div class="flex justify-center items-center mb-4 gap-2 md:mb-6 md:gap-3">
           <h2 class="text-xl font-semibold md:text-2xl">
