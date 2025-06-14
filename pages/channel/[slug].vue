@@ -1,13 +1,13 @@
 <template>
   <div v-if="channel" class="container mx-auto py-7 px-4">
     <div class="mb-6">
-      <button
+      <!-- <button
         class="inline-flex items-center gap-2 text-gray-600 dark:text-white dark:hover:text-white hover:text-gray-800 focus:outline-none"
         @click="goBack"
       >
         <Icon name="heroicons:arrow-left" class="w-5 h-5" />
         <span>Назад</span>
-      </button>
+      </button> -->
     </div>
 
     <div class="bg-white dark:bg-darken-200 border dark:border-none border-gray-200 rounded-xl p-6 shadow-sm">
@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { Channel } from '~/types/channel';
-
+import sliceSubs from '~/utils/sliceSubs';
 const route = useRoute();
 const slug = route.params.slug as string;
 
@@ -91,18 +91,13 @@ useServerSeoMeta({
   description: channel.value!.description || '',
 });
 
-function goBack() {
-  window.history.back();
-}
+// function goBack() {
+//   window.history.back();
+// }
 
 const formattedSubs = computed(() => {
-  if (channel.value?.subs) {
-    const subs = channel.value.subs;
-    if (subs >= 1_000_000) return `${(subs / 1_000_000).toFixed(1)}M`;
-    if (subs >= 1_000) return `${(subs / 1_000).toFixed(1)}K`;
-    return subs.toLocaleString('en-US');
-  }
-  return '';
+  const subs = channel.value.subs || 0;
+  return sliceSubs(subs);
 });
 
 const formattedImgLink = computed(() => {

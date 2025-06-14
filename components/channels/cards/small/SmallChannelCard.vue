@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import type { Channel } from '~/types/channel';
 import { computed } from 'vue';
-
+import sliceSubs from '~/utils/sliceSubs';
 const props = defineProps<{ channel: Channel }>();
 
 const {
@@ -30,17 +30,8 @@ const {
 } = useRuntimeConfig();
 
 const formattedSubs = computed(() => {
-  const subs = props.channel.subs;
-  if (typeof subs !== 'number') {
-    return '0';
-  }
-
-  if (subs >= 1_000_000) {
-    return `${(subs / 1_000_000).toFixed(1)}M`;
-  } else if (subs >= 1_000) {
-    return `${(subs / 1_000).toFixed(1)}K`;
-  }
-  return subs.toLocaleString('en-US');
+  const subs = props.channel.subs || 0;
+  return sliceSubs(subs);
 });
 
 const formattedImgLink = computed(() => {

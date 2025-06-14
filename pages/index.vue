@@ -134,12 +134,6 @@
 </template>
 
 <script setup lang="ts">
-import RecChannelsList from '~/components/channels/RecChannelsList.vue';
-import SmallChannelCard from '~/components/channels/SmallChannelCard.vue';
-import { usePopChannels } from '~/composables/usePopChannels';
-import { useNewChannels } from '~/composables/useNewChannels';
-import { useSearch } from '~/composables/useSearch';
-
 const popChannels = usePopChannels();
 const newChannels = useNewChannels();
 
@@ -153,7 +147,6 @@ onMounted(() => {
   }
 });
 
-// Обработчик нажатия кнопки поиска
 async function handleSearch() {
   if (validateQuery()) {
     await router.push(`/search?query=${encodeURIComponent(searchQuery.value)}`);

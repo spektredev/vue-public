@@ -1,4 +1,3 @@
-// useSearch.vue
 import type { Channel } from '~/types/channel';
 import { useFetch, useRoute, useRouter } from '#app';
 
@@ -21,7 +20,6 @@ export function useSearch() {
     }
   }
 
-  // Функция для проверки валидности запроса
   function validateQuery() {
     if (!searchQuery.value || searchQuery.value.length < 3) {
       error.value = 'Запрос должен содержать минимум 3 символа';

@@ -8,8 +8,6 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, nextTick } from 'vue';
-import { useCategories } from '~/composables/useCategories';
-import { useChannels } from '~/composables/useChannels';
 
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
@@ -70,11 +68,8 @@ async function scrollToTop() {
 }
 
 async function updatePage(newPage: number) {
-  const NProgress = (await import('nprogress')).default;
-  NProgress.start();
   page.value = newPage;
   await scrollToTop();
-  NProgress.done();
 }
 onMounted(() => {
   scrollToTop();

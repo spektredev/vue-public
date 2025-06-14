@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Мобильный список в адаптивной сетке -->
     <ul class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-1 mt-4 mb-6 md:hidden">
       <li v-for="category in categories" :key="category.id">
         <NuxtLink
@@ -12,7 +11,6 @@
         </NuxtLink>
       </li>
     </ul>
-    <!-- Десктопная сетка -->
     <div class="hidden md:grid md:grid-cols-3 md:gap-5 md:mt-6 md:mb-10">
       <CategoryCard v-for="category in categories" :key="category.id" :category="category" />
     </div>

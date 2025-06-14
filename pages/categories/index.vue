@@ -6,9 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import CategoryList from '~/components/categories/CategoryList.vue';
-import { useCategories } from '~/composables/useCategories';
-
 const { catData } = await useCategories();
 
 definePageMeta({

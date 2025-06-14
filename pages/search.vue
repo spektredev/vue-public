@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import ChannelList from '~/components/channels/ChannelList.vue';
 import { useRoute } from '#app';
 import { watch } from 'vue';
 import { useSearch } from '~/composables/useSearch';

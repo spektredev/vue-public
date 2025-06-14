@@ -10,8 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import ChannelCard from '~/components/channels/ChannelCard.vue';
-import SkeletonCard from '~/components/channels/SkeletonCard.vue';
 import type { Channel } from '~/types/channel';
 
 defineProps<{

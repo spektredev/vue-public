@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import type { Channel } from '~/types/channel';
-
+import sliceSubs from '~/utils/sliceSubs.ts';
 const props = defineProps<{ channel: Channel }>();
 
 const {
@@ -76,9 +76,7 @@ const formattedImgLink = computed(() => {
 
 const formattedSubs = computed(() => {
   const subs = props.channel.subs || 0;
-  if (subs >= 1_000_000) return `${(subs / 1_000_000).toFixed(1)}M`;
-  if (subs >= 1_000) return `${(subs / 1_000).toFixed(1)}K`;
-  return subs.toLocaleString('en-US');
+  return sliceSubs(subs);
 });
 
 const cleanText = (text: string) => text.replace(/\uFFFD/g, '').trim();

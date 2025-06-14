@@ -1,4 +1,3 @@
-// composables/useCategories.ts
 import type { Category } from '~/types/category';
 
 export const useCategories = async () => {
