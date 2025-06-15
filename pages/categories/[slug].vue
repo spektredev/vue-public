@@ -7,6 +7,7 @@
 </template>
 
 <script setup lang="ts">
+// todo: migrate to /page/ routes
 import { ref, computed, watch, nextTick } from 'vue';
 
 const route = useRoute();
@@ -37,7 +38,7 @@ const categoryName = computed(() => category.value.title);
 
 const page = ref(1);
 
-const channelsData = ref<ReturnType<typeof useChannels> | null>(null);
+const channelsData = ref(null);
 const channels = computed(() => channelsData.value?.channels ?? []);
 const totalPages = computed(() => {
   return channelsData.value?.totalPages as number;
@@ -47,18 +48,10 @@ const loading = computed(() => channelsData.value?.status || 'idle');
 watch(
   [categoryId, page],
   ([newCatId, newPage]) => {
-    if (newCatId) {
-      channelsData.value = useChannels(newCatId, newPage, totalPages.value);
-    } else {
-      channelsData.value = null;
-    }
+    channelsData.value = useChannels(newCatId, newPage, totalPages.value);
   },
   { immediate: true }
 );
-
-watch(slug, () => {
-  page.value = 1;
-});
 
 async function scrollToTop() {
   await nextTick();

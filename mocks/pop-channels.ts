@@ -1,6 +1,6 @@
 import type { Channel } from '~/types/channel';
 
-export const mockChannels: Channel[] = [
+const mockChannels: Channel[] = [
   {
     id: 5103,
     link: '@topor',
@@ -41,3 +41,5 @@ export const mockChannels: Channel[] = [
     img_link: '/images/channels/294aa077b57ed6cb09a8b6c3b7f49245.webp',
   },
 ];
+
+export default mockChannels;

@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-darken-800 text-white p-4 mt-8">
+  <footer class="bg-darken-800 text-white p-4">
     <div class="container mx-auto py-5">
       <div class="flex gap-3 mb-6">
         <Icon name="file-icons:telegram" class="h-7 w-7 text-white" />

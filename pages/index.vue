@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero-section py-16 text-center bg-gray-50 dark:bg-darken-200 px-4">
+    <section class="hero-section py-16 px-4 text-center bg-gray-50 dark:bg-darken-200 dark:text-white">
       <div class="container">
         <h1 class="text-4xl font-bold mb-4">Найди лучшие Telegram-каналы для себя! 🚀</h1>
         <p class="text-lg text-gray-600 mb-8 dark:text-white">
@@ -19,22 +19,22 @@
       <div class="container">
         <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-4">
           <input
-            v-model="searchQuery"
+            v-model="inputQuery"
+            name="search"
             type="text"
             placeholder="Что ищем?"
             class="w-full flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none dark:text-black focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-300"
             @keyup.enter="handleSearch"
           >
           <button
-            :disabled="isLoading"
             class="bg-accent-200 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 disabled:bg-gray-400"
             @click="handleSearch"
           >
-            {{ isLoading ? 'Поиск...' : 'Найти' }}
+            Найти
           </button>
         </div>
-        <p v-if="error" class="text-red-500 mt-2 text-center">
-          {{ error }}
+        <p v-if="inputError" class="text-red-500 mt-2 text-center">
+          {{ inputError }}
         </p>
       </div>
     </section>
@@ -77,23 +77,23 @@
       </div>
     </section>
 
-    <section class="trending-channels mt-16 py-8 lg:py-16 px-4 bg-gray-50 dark:bg-darken-600">
+    <section class="trending-channels pt-16 lg:pt-28 px-4 bg-gray-50 dark:bg-darken-600">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Популярные каналы <span class="ml-2">🔥</span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <SmallChannelCard v-for="channel in popChannels.mockChannels" :key="channel.id" :channel="channel" />
+          <SmallChannelCard v-for="channel in popChannels" :key="channel.id" :channel="channel" />
         </div>
       </div>
     </section>
 
-    <section class="recommended-channels pt-16 px-4">
+    <section class="recommended-channels pt-16 lg:pt-24 px-4">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Рекомендуемые каналы</h2>
         <RecChannelsList />
       </div>
     </section>
 
-    <section class="new-channels mt-16 py-8 lg:py-16 px-4 bg-gray-50 dark:bg-darken-600">
+    <section class="new-channels pt-16 lg:pt-28 px-4 bg-gray-50 dark:bg-darken-600">
       <div class="container">
         <div class="flex justify-center items-center mb-4 gap-2 md:mb-6 md:gap-3">
           <h2 class="text-xl font-semibold md:text-2xl">
@@ -103,12 +103,12 @@
           <Icon name="mdi:new-box" class="w-6 h-6 text-blue-500 md:w-8 md:h-8 hidden md:block" aria-hidden="true" />
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <SmallChannelCard v-for="channel in newChannels.mockChannels" :key="channel.id" :channel="channel" />
+          <SmallChannelCard v-for="channel in newChannels" :key="channel.id" :channel="channel" />
         </div>
       </div>
     </section>
 
-    <section class="benefits-section py-16 px-4 dark:bg-darken-600">
+    <section class="benefits-section py-16 px-4">
       <div class="container">
         <h2 class="text-2xl font-semibold mb-6 text-center">Почему выбирают нас?</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -134,22 +134,29 @@
 </template>
 
 <script setup lang="ts">
-const popChannels = usePopChannels();
-const newChannels = useNewChannels();
+import popChannels from '~/mocks/pop-channels';
+import newChannels from '~/mocks/new-channels';
 
 const router = useRouter();
-const route = useRoute();
-const { searchQuery, isLoading, error, validateQuery } = useSearch();
 
-onMounted(() => {
-  if (route.query.query) {
-    searchQuery.value = String(route.query.query);
+const inputQuery = ref<string>('');
+const inputError = ref<string>('');
+
+function validateQuery() {
+  if (!inputQuery.value || inputQuery.value.length < 3) {
+    inputError.value = 'Запрос должен содержать минимум 3 символа';
+    setTimeout(() => {
+      inputError.value = '';
+    }, 3000);
+    return false;
   }
-});
+  return true;
+}
 
-async function handleSearch() {
+function handleSearch() {
+  console.log('inputQuery: ', inputQuery.value);
   if (validateQuery()) {
-    await router.push(`/search?query=${encodeURIComponent(searchQuery.value)}`);
+    router.push(`/search?query=${encodeURIComponent(inputQuery.value)}`);
   }
 }
 

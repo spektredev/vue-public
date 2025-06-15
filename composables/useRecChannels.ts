@@ -1,5 +1,4 @@
-// // composables/useRecChannels.ts
-import { mockChannels } from '~/mocks/rec_channels';
+import { mockChannels } from '~/mocks/rec-channels';
 import type { Channel } from '~/types/channel';
 
 function shuffleArray<T>(array: T[]): T[] {

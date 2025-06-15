@@ -12,14 +12,14 @@
       </li>
     </ul>
     <div class="hidden md:grid md:grid-cols-3 md:gap-5 md:mt-6 md:mb-10">
-      <CategoryCard v-for="category in categories" :key="category.id" :category="category" />
+      <CategoryCard v-for="category in categories" :key="category.id + '-mobile'" :category="category" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Category } from '~/types/category';
-import CategoryCard from './CategoryCard.vue';
+import CategoryCard from '~/components/categories/card/CategoryCard.vue';
 
 defineProps<{
   categories: Category[] | null;

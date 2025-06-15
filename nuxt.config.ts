@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   ssr: true,
   modules: [
     '@nuxtjs/tailwindcss',
@@ -15,10 +14,9 @@ export default defineNuxtConfig({
     cssPath: '~/assets/css/tailwind.css',
   },
   colorMode: {
-    preference: 'system',
+    preference: 'dark',
     fallback: 'light',
-    storage: 'cookie',
-    storageKey: 'theme',
+    storage: 'localStorage',
     classSuffix: '',
   },
   components: [
@@ -28,7 +26,7 @@ export default defineNuxtConfig({
     },
   ],
   site: {
-    url: process.env.BASE_URL || 'https://tgrow.ru',
+    url: process.env.NUXT_PUBLIC_BASE_URL || 'https://tgrow.ru',
     name: 'TGrow',
   },
   seo: {
@@ -63,9 +61,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:3001',
-      minioUrl: process.env.MINIO_URL,
-      email: process.env.EMAIL || 'tgrowadmin@protonmail.com',
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:3001',
+      minioUrl: process.env.NUXT_PUBLIC_MINIO_URL || 'http://localhost:9000',
+      email: process.env.NUXT_PUBLIC_EMAIL || 'tgrowadmin@protonmail.com',
     },
   },
   icon: {

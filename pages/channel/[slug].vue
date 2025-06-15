@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { Channel } from '~/types/channel';
-import sliceSubs from '~/utils/sliceSubs';
+import sliceSubs from '~/utils/slice-subs';
 const route = useRoute();
 const slug = route.params.slug as string;
 
@@ -117,10 +117,6 @@ const formattedDescription = computed(() => {
 const telegramLink = computed(() =>
   channel.value ? `tg://resolve?domain=${channel.value.link.replace('@', '')}` : '#'
 );
-
-definePageMeta({
-  layout: 'default',
-});
 </script>
 
 <style scoped>

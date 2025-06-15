@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import type { Channel } from '~/types/channel';
 import { computed } from 'vue';
-import sliceSubs from '~/utils/sliceSubs';
+import sliceSubs from '~/utils/slice-subs';
 const props = defineProps<{ channel: Channel }>();
 
 const {

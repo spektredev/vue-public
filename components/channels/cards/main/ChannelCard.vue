@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import type { Channel } from '~/types/channel';
-import sliceSubs from '~/utils/sliceSubs.ts';
+import sliceSubs from '~/utils/slice-subs';
 const props = defineProps<{ channel: Channel }>();
 
 const {
