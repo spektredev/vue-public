@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import FlexedLayout from '~/layouts/flexed.vue';
-definePageMeta({ layout: false });
 </script>
 
 <template>

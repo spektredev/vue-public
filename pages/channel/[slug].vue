@@ -50,7 +50,7 @@
     </div>
 
     <h2 class="text-2xl font-semibold mb-6 mt-8 text-center">Рекомендуемые каналы</h2>
-    <RecChannelsList v-if="randList" :channels="randList" />
+    <RecChannelsList />
   </div>
 </template>
 
@@ -73,8 +73,6 @@ const { data: channel, error } = await useAsyncData<Channel>(`channel-${slug}`, 
 //   console.log('CSR: channel=', channel.value)
 // }
 
-const { data: randList } = await useRecChannels(6);
-
 const {
   public: { minioUrl },
 } = useRuntimeConfig();
@@ -96,12 +94,12 @@ useServerSeoMeta({
 // }
 
 const formattedSubs = computed(() => {
-  const subs = channel.value.subs || 0;
+  const subs = channel.value?.subs || 0;
   return sliceSubs(subs);
 });
 
 const formattedImgLink = computed(() => {
-  if (channel.value?.img_link && channel.value.img_link.trim() !== '') {
+  if (channel.value?.img_link) {
     return `${minioUrl}${channel.value.img_link}`;
   }
   return '/images/another.png';

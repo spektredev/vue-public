@@ -7,20 +7,12 @@
 </template>
 
 <script setup lang="ts">
-// todo: migrate to /page/ routes
 import { ref, computed, watch, nextTick } from 'vue';
 
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
 
-const { catData, errData } = await useCategories();
-
-if (errData.value) {
-  throw createError({
-    statusCode: 500,
-    statusMessage: 'Не удалось загрузить список категорий',
-  });
-}
+const { catData } = await useCategories();
 
 const category = computed(() => {
   const found = catData.value.find((c) => c.link === slug.value);
@@ -36,22 +28,15 @@ const category = computed(() => {
 const categoryId = computed(() => category.value.id);
 const categoryName = computed(() => category.value.title);
 
-const page = ref(1);
-
-const channelsData = ref(null);
-const channels = computed(() => channelsData.value?.channels ?? []);
-const totalPages = computed(() => {
-  return channelsData.value?.totalPages as number;
+const oldTotalPages = ref<number | null>(null);
+const { channels, totalPages, page, refresh, status } = await useChannels(categoryId.value, oldTotalPages.value);
+const loading = computed(() => (status.value == 'pending' ? true : false));
+watch([categoryId], () => {
+  refresh();
 });
-const loading = computed(() => channelsData.value?.status || 'idle');
-
-watch(
-  [categoryId, page],
-  ([newCatId, newPage]) => {
-    channelsData.value = useChannels(newCatId, newPage, totalPages.value);
-  },
-  { immediate: true }
-);
+if (totalPages) {
+  oldTotalPages.value = totalPages.value;
+}
 
 async function scrollToTop() {
   await nextTick();

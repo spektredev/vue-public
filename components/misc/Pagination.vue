@@ -1,7 +1,7 @@
 <template>
   <div class="mt-8 flex justify-center items-center gap-4">
     <button
-      :disabled="page === 1 || loading === 'pending'"
+      :disabled="page === 1 || loading"
       class="flex items-center gap-2 px-4 py-2 bg-accent-200 dark:bg-neutral-500 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 disabled:bg-neutral-500"
       @click="changePage(page - 1)"
     >
@@ -14,7 +14,7 @@
     </span>
 
     <button
-      :disabled="page === totalPages || loading === 'pending'"
+      :disabled="page === totalPages || loading"
       class="flex items-center gap-2 px-4 py-2 bg-accent-200 dark:bg-neutral-500 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 disabled:bg-neutral-500"
       @click="changePage(page + 1)"
     >
@@ -28,7 +28,7 @@
 defineProps<{
   page: number;
   totalPages: number;
-  loading: string;
+  loading: boolean;
 }>();
 
 const emit = defineEmits<{
